@@ -391,7 +391,12 @@ def make_stubs(
             raise ValueError(
                 "If `check_only` is false a path to 'scipy-stubs' dir must be supplied"
             )
-        sparse_stubs_path = importlib.resources.files("scipy-stubs") / "sparse"
+        try:
+            sparse_stubs_path = importlib.resources.files("scipy-stubs") / "sparse"
+        except ModuleNotFoundError as e:
+            raise ModuleNotFoundError(
+                e.msg + ", try non-editable install of scipy-stubs "
+            ) from None
     else:
         sparse_stubs_path = os.path.join(stub_path, "sparse")
         if not os.path.isdir(sparse_stubs_path):
@@ -514,7 +519,10 @@ def main() -> int:
         if args.verbose:
             print(traceback.format_exc())
         else:
-            print(f"Encountered error {e!r}, " "for full tracestack run with --verbose")
+            print(
+                f"Encountered error: {e}\n"
+                "For full tracestack run with make_scipy_sparse_stubs --verbose"
+            )
         return 123
 
     fin_msg = "Finished"

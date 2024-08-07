@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 jobs:
-  build:
+  main:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,4 +22,4 @@ jobs:
       - name: Install the project
         run: uv sync --dev --locked
       - name: Run tests
-        run: uv run tox
+        run: uv run tox --quiet

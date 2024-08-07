@@ -3,13 +3,11 @@
 This is a [PEP-561](https://peps.python.org/pep-0561/) compilant type information package for the `sparse` module of the [`SciPy`](https://scipy.org/) package.
 Installing this package will allow [`mypy`](https://mypy.readthedocs.io/en/latest/installed_packages.html) and possibly other static type checkers (e.g., pyright) to recognize type annotations for `scipy.sparse` classes and functions.
 
-> __NOTE__ :
->
-> This package is a work in progress, and while it is tests the test coverage is still lacking (see https://github.com/BarakKatzir/types-scipy-sparse/issues/6)
->
-> Currently the `csgraph` and `linalg` submodules are not type annotated (see issue https://github.com/BarakKatzir/types-scipy-sparse/issues/5)
->
-> This package only supports `"numpy <2.0.0"` for now.
+
+> [!CAUTION]
+> This package is a work in progress, and while it is tests the test coverage is still lacking (see this issue https://github.com/BarakKatzir/types-scipy-sparse/issues/6 ).
+> Currently the `csgraph` and `linalg` submodules are not type annotated (see issue https://github.com/BarakKatzir/types-scipy-sparse/issues/5).
+> This package only supports `"numpy <2.0.0"` for now (see issue https://github.com/BarakKatzir/types-scipy-sparse/issues/7).
 
 ## Installation
 
@@ -25,7 +23,6 @@ The basic annotations work fine. For example, if we have the file `important_fun
 
 ```python
 # content of important_func.py
-
 from scipy.sparse import coo_array
 
 def make_sparse(
@@ -37,7 +34,7 @@ def make_sparse(
 
 it will pass a mypy check
 
-```bash
+```console
 $ mypy important_func.py
 Success: no issues found in 1 source file
 ```
@@ -50,37 +47,40 @@ For example,
 
 ```python
 # content of important_script.py
-
-from scipy.sparse import csr_array, lil_array
 import numpy
+from scipy.sparse import csr_array, lil_array
 
 x = csr_array([[0, 1], [2, 0]], dtype=numpy.float64)
-reveal_type(x)
 y = lil_array(numpy.array([[0, 1], [2, 0]], dtype=numpy.float32))
-reveal_type(y)
+reveal_locals()
 
 ```
 
-passes mypy with the revealed_types of the `x` and `y` arrays
+passes mypy with the revealed types of the `x` and `y` arrays
 
-```bash
+```console
 $ mypy important_script.py
-important_script.py:5: note: Revealed type is "scipy.sparse._csr.csr_array[Any, numpy.dtype[numpy.floating[numpy._typing._64Bit]]]"
-important_script.py:7: note: Revealed type is "scipy.sparse._lil.lil_array[Any, numpy.dtype[numpy.floating[numpy._typing._32Bit]]]"
+important_script.py:6: note: Revealed local types are:
+important_script.py:6: note:     x: scipy.sparse._csr.csr_array[Any, numpy.dtype[numpy.floating[numpy._typing._64Bit]]]
+important_script.py:6: note:     y: scipy.sparse._lil.lil_array[Any, numpy.dtype[numpy.floating[numpy._typing._32Bit]]]
 Success: no issues found in 1 source file
 ```
 
-As in numpy, the first typevar, `ShapeType`, is left for user customization.
+As in numpy, the first type variable, `ShapeType`, is left for user customization.
 
-Note that for compatibility with any other type packages, The `ShapeType` and `DType` typevars default to `Any`, using the [PEP-696](https://peps.python.org/pep-0696/) feature. This means that type annotatin `x: dok_array` will implicitly insert these `Any`s:
+Note that for compatibility with any other type packages, The `ShapeType` and `DType` type variables default to `Any`, using the [PEP-696](https://peps.python.org/pep-0696/) feature. This means that type annotatin `x: dok_array` will implicitly insert these `Any`s:
 
-```bash
+```console
 $ mypy -c "import scipy.sparse as sp; x: sp.dok_array; reveal_type(x)"
 <string>:1: note: Revealed type is "scipy.sparse._dok.dok_array[Any, numpy.dtype[Any]]"
 Success: no issues found in 1 source file
 ```
 
-**However**, since these generics are only introduced in the type stubs, they will raise an error at runtime. If you desire to use this feature when annotating `.py` files then there are two easy solutions. The first is to use implicit forward references by adding `from __future__ import annotations` at the top of your script. The second is to explicitly use forward references by putting the troublesome annotations in quotation marks as `x: "coo_array[Any, numpy.dtype[numpy.uint8]]"`.
+> [!WARNING]
+> Since these generics are only introduced in the type stubs, they will raise an error at runtime. Thus, `x: coo_array[Any, numpy.dtype[numpy.uint8]]` will raise an error.
+> If you desire to use this feature when annotating `.py` files then there are two easy solutions.
+> The first is to use implicit forward references by adding `from __future__ import annotations` at the top of your script.
+> The second is to explicitly use forward references by putting the troublesome annotations in quotation marks as `x: "coo_array[Any, numpy.dtype[numpy.uint8]]"`.
 
 
 ### Type narrowing functions
@@ -91,31 +91,34 @@ For example the python file
 
 ```python
 # content of my_script.py
-
 from typing import Any
-from scipy.sparse import csr_array, issparse
+
 import numpy
+from scipy.sparse import csr_array, issparse
 
 x: numpy.ndarray[Any, Any] | csr_array
-reveal_type(x)
 if issparse(x):
     reveal_type(x)
+    # attribute of csr_array
     x.indptr
 elif isinstance(x, numpy.ndarray):
+    # attribute of ndarray
     reveal_type(x)
+    x.strides
 else:
     # This branch is inferred to be unreachable
     # so mypy ignores the following
     reveal_type(x)
+    x.mystery_attribute
 
 ```
 
 will pass mypy with the correct revealed types
 
-```bash
+```console
 $ mypy my_script.py
-my_script.py:7: note: Revealed type is "scipy.sparse._csr.csr_array[Any, numpy.dtype[Any]]"
-my_script.py:10: note: Revealed type is "numpy.ndarray[Any, Any]"
+my_script.py:8: note: Revealed type is "scipy.sparse._csr.csr_array[Any, numpy.dtype[Any]]"
+my_script.py:12: note: Revealed type is "numpy.ndarray[Any, Any]"
 Success: no issues found in 1 source file
 ```
 
@@ -163,13 +166,13 @@ Another thing to point out is that the whole *private* module `scipy.sparse._spa
 
 ### Development environment setup
 
-The current development environment uses the experimental `uv` package. The version is `uv` is fixed separately in different places as the `uv` package is run separately in different environments (the dev venv, tox venv, build isolated venv, github workflows runner).
+The current development environment uses the experimental `uv` package.
 
-Here are a few steps for anyone to get started with the package:
+Here are a few steps for anyone to set up the development environment quickly:
 
 1) clone that package
 
-2) [install uv](https://docs.astral.sh/uv/installation/) (and consider fix the version to that of this repo)
+2) [install uv](https://docs.astral.sh/uv/installation/) (consider fixing the version of `uv` to that of this repo)
 
 In workspace root, create virtual environment
 
@@ -177,7 +180,7 @@ In workspace root, create virtual environment
   uv venv -p 3.10 --python-preference managed
   ```
 
-  and activate the venv (e.g., run `source .venv/bin/activate` if in linux terminal).
+  and activate the venv (e.g., run `source .venv/bin/activate` if in a linux terminal).
 
 3) To install dependencies run
 
@@ -191,40 +194,46 @@ In workspace root, create virtual environment
   uv pip install . --no-deps
   ```
 
+> [!NOTE]
+> If you plan to change the version of `uv`, know that it is fixed separately in different places as the `uv` command is run separately in different environments: the dev venv, tox venvs, when building wheels, and in github workflows
+
 ### Type stub generation
 
-A big portion of the stub files are generated by code from common templates. since the scipy sparse module has a lot of similar classes with common functionality and common inheritance.
-The repository includes the stub generating CLI tool named `make-scipy-sparse-stubs`. The tool can be installed as a package in editable mode (the instruction above do that). It contains the python module `make_scipy_sparse_stubs` which can be run to either generate the type stubs or to check that the present / installed type stubs are in sync.
+A big portion of the stub files are generated by code from common templates, since the scipy sparse module has a lot of similar classes with common functionality and common inheritance.
+The repository includes the stub generating CLI tool named `make-scipy-sparse-stubs`. The tool can be installed as a package in editable mode (with the `uv sync` command or with `uv pip install -e make-scipy-sparse-stubs@tools/make-scipy-sparse-stubs`). It contains the python module `make_scipy_sparse_stubs` which can be run to either generate the type stubs or to check that the present / installed type stubs are in sync.
 
 To check that the stubs are in sync with the generated stubs run
 
-```bash
+```console
 $ python -m make_scipy_sparse_stubs --check
 Finished without any changes 🎉
 ```
 
 or to overwrite the current stubs by specifying their location in the workspace
 
-```bash
+```console
 $ python -m make_scipy_sparse_stubs -sp src/scipy-stubs
 Finished without any changes 🎉
 ```
 
-and then reinstalling the package. For more on the tool, see it's help
+For more on the tool, see it's help:
 
 ```bash
 python -m make_scipy_sparse_stubs --help
 ```
 
-> __Note:__ the tool's functionality can change between different revisions of the repository.
+> [WARNING!]
+> The tool's functionality and interface can change between different revisions of the repository.
 
 ### Tests
 
-Pull requests to `main` are automatically run through tests, so you can develop locally and push to main and see if it passes. Preferably, you can run locally by running `tox`
+Pull requests to `main` are automatically run through tests, so you can develop locally and push to main and see if it passes. You can run the tests locally by running `tox` before pushing
 
 ```bash
 uv run tox
 ```
+
+or if you activated the venv, then simply run `tox`.
 
 The stubs are tested for:
 
@@ -234,4 +243,4 @@ The stubs are tested for:
 
 * `mypy` and mypy's `stubtest`
 
-* `pytest` examines mypy failure / pass / reveal on example code (the template for these tests was adapted from the now archived `numpy-stubs` (see [https://github.com/numpy/numpy-stubs]) repository)
+* `pytest` examines mypy failure / pass / reveal on example code (the template for these tests was adapted from the now archived `numpy-stubs` repo (see https://github.com/numpy/numpy-stubs)

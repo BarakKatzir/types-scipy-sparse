@@ -24,7 +24,7 @@ dependencies = [
     "typing-extensions >=4.12",
     "scipy >=1.14.0",
 ]
-license = { file = "LICENSE.md" }
+license = { file = "LICENSE" }
 
 # [project.urls]
 # homepage = "https://github.com/BarakKatzir/types-scipy-sparse"

@@ -49,9 +49,11 @@ def _indent_line(line: str, spaces: int = 4) -> str:
 def _get_commons(commons: str) -> str:
     """Append the common type annotations to the given text."""
     txt = ""
-    with (ANNOTATION_SNIPPETS / "class_commons" / commons).with_suffix(
-        ".txt"
-    ).open() as f:
+    with (
+        (ANNOTATION_SNIPPETS / "class_commons" / commons)
+        .with_suffix(".txt")
+        .open() as f
+    ):
         for line in f.readlines():
             txt += _indent_line(line)
     return txt

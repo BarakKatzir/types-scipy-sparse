@@ -174,7 +174,7 @@ Here are a few steps for anyone to get started with the package:
 In workspace root, create virtual environment
 
   ```bash
-  $ uv venv -p 3.10 --python-preference managed
+  uv venv -p 3.10 --python-preference managed
   ```
 
   and activate the venv (e.g., run `source .venv/bin/activate` if in linux terminal).
@@ -182,13 +182,13 @@ In workspace root, create virtual environment
 3) To install dependencies run
 
   ```bash
-  $ uv sync
+  uv sync --frozen
   ```
 
-4) to make sure the type package is correctly installed, install in **non**-editable mode
+4) to make sure the type package is correctly installed, install in **non-editable** mode
 
   ```bash
-  $ uv pip install . --no-deps
+  uv pip install . --no-deps
   ```
 
 ### Type stub generation
@@ -210,11 +210,10 @@ $ python -m make_scipy_sparse_stubs -sp src/scipy-stubs
 Finished without any changes 🎉
 ```
 
-For more on the tool see it's help
+and then reinstalling the package. For more on the tool, see it's help
 
 ```bash
-$ python -m make_scipy_sparse_stubs --help
-...
+python -m make_scipy_sparse_stubs --help
 ```
 
 > __Note:__ the tool's functionality can change between different revisions of the repository.
@@ -224,14 +223,14 @@ $ python -m make_scipy_sparse_stubs --help
 Pull requests to `main` are automatically run through tests, so you can develop locally and push to main and see if it passes. Preferably, you can run locally by running `tox`
 
 ```bash
-$ uv run tox
+uv run tox
 ```
 
 The stubs are tested for:
 
 * type stubs match the generated `make_scipy_sparse_stubs` tool
 
-* Ruff format and checkers
+* `ruff` formatters and checkers
 
 * `mypy` and mypy's `stubtest`
 

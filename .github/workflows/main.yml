@@ -22,4 +22,4 @@ jobs:
       - name: Install the project
         run: uv sync --dev --locked
       - name: Run tests
-        run: uv run tox --quiet
+        run: uv run tox

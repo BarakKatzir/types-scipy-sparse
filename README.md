@@ -44,7 +44,7 @@ Success: no issues found in 1 source file
 
 ### `numpy`-flavored generics
 
-The different sparse array and sparse matrix classes are type annotated similarly to `numpy.ndarray`s, with two `TypeVar`s: `<sparse_class>[ShapeType, DType]`, for example `csc_array[Any, np.float32]`. As for `numpy.ndarray`, the `DType` is bound by `numpy.dtype[Any]` and the `ShapeType` can be anything.
+The different sparse array and sparse matrix classes are type annotated similarly to `numpy.ndarray`s, with two `TypeVar`s: `<sparse_class>[ShapeType, DType]`, for example `csc_array[Any, numpy.float32]`. As for `numpy.ndarray`, the `DType` is bound by `numpy.dtype[Any]` and the `ShapeType` can be anything.
 
 For example,
 
@@ -52,11 +52,11 @@ For example,
 # content of important_script.py
 
 from scipy.sparse import csr_array, lil_array
-import numpy as np
+import numpy
 
-x = csr_array([[0, 1], [2, 0]], dtype=np.float64)
+x = csr_array([[0, 1], [2, 0]], dtype=numpy.float64)
 reveal_type(x)
-y = lil_array(np.array([[0, 1], [2, 0]], dtype=np.float32))
+y = lil_array(numpy.array([[0, 1], [2, 0]], dtype=numpy.float32))
 reveal_type(y)
 
 ```
@@ -80,7 +80,7 @@ $ mypy -c "import scipy.sparse as sp; x: sp.dok_array; reveal_type(x)"
 Success: no issues found in 1 source file
 ```
 
-**However**, since these generics are only introduced in the type stubs, they will raise an error at runtime. If you desire to use this feature when annotating `.py` files then there are two easy solutions. The first is to use implicit forward references by adding `from __future__ import annotations` at the top of your script. The second is to explicitly use forward references by putting the troublesome annotations in quotation marks as `x: "coo_array[Any, np.dtype[np.uint8]]"`.
+**However**, since these generics are only introduced in the type stubs, they will raise an error at runtime. If you desire to use this feature when annotating `.py` files then there are two easy solutions. The first is to use implicit forward references by adding `from __future__ import annotations` at the top of your script. The second is to explicitly use forward references by putting the troublesome annotations in quotation marks as `x: "coo_array[Any, numpy.dtype[numpy.uint8]]"`.
 
 
 ### Type narrowing functions
@@ -94,14 +94,14 @@ For example the python file
 
 from typing import Any
 from scipy.sparse import csr_array, issparse
-import numpy as np
+import numpy
 
-x: np.ndarray[Any, Any] | csr_array
+x: numpy.ndarray[Any, Any] | csr_array
 reveal_type(x)
 if issparse(x):
     reveal_type(x)
     x.indptr
-elif isinstance(x, np.ndarray):
+elif isinstance(x, numpy.ndarray):
     reveal_type(x)
 else:
     # This branch is inferred to be unreachable
@@ -141,11 +141,12 @@ For example, the following passes mypy
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
-import numpy as np
+import numpy
+
 if TYPE_CHECKING:
     from scipy.sparse.typing import SparseArray
 
-def foo(x: SparseArray[numpyp.float64]) -> None:
+def foo(x: SparseArray[numpy.float64]) -> None:
     print(f"doing serious calculations with {x}")
 
 ```

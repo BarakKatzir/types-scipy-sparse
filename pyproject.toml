@@ -1,0 +1,67 @@
+[project]
+name = "types-scipy-sparse"
+version = "0.0.1"
+description = "Type hints for scipy sparse module"
+authors = [{ name = "Barak A. Katzir", email = "barakatzir@gmail.com" }]
+requires-python = ">=3.10"
+keywords = ["scipy", "sparse", "stubs", "type hint"]
+classifiers = [
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3 :: Only",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: BSD License",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Scientific/Engineering",
+    "Typing :: Stubs Only",
+]
+readme = "README.md"
+dependencies = [
+    "numpy >=1.23.5,<2",
+    "typing-extensions >=4.12",
+    "scipy >=1.14.0",
+]
+license = { file = "LICENSE.md" }
+
+# [project.urls]
+# homepage = "https://github.com/BarakKatzir/types-scipy-sparse"
+# Repository = "https://github.com/BarakKatzir/types-scipy-sparse"
+# documentation = "https://docs.scipy.org/doc/scipy/"
+# source = "https://github.com/BarakKatzir/types-scipy-sparse"
+# download = "https://github.com/BarakKatzir/types-scipy-sparse/releases"
+# tracker = "https://github.com/BarakKatzir/types-scipy-sparse/issues"
+# changelog = "https://github.com/me/spam/blob/master/CHANGELOG.md"
+
+[tool.uv]
+dev-dependencies = [
+    "pytest >=8,<9",
+    "mypy >=1.11,<2",
+    "ruff >=0.5,<0.6",
+    "tox-uv >=1,<2",
+    "tox >=4,<5",
+    "uv ==0.2.33",
+    "make-scipy-sparse-stubs ==0.1.0",
+]
+
+[tool.uv.sources]
+make-scipy-sparse-stubs = { workspace = true }
+
+[tool.uv.workspace]
+members = ["tools/make-scipy-sparse-stubs"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+packages = ["src/scipy-stubs"]
+exclude = ["/.github/", "/*.ini"]
+
+[tool.hatch.envs.default]
+installer = "uv"
+
+[tool.hatch.envs.hatch-uv]
+dependencies = ["uv ==0.2.33"]

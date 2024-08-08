@@ -5,11 +5,13 @@ Installing this package will allow [`mypy`](https://mypy.readthedocs.io/en/lates
 
 
 > [!CAUTION]
-> This package is a work in progress, and while it is tests the test coverage is still lacking (see this issue https://github.com/BarakKatzir/types-scipy-sparse/issues/6 ).
-> 
+> This package is a work in progress, and while it is tested, the test coverage is still lacking (see this issue https://github.com/BarakKatzir/types-scipy-sparse/issues/6 ).
+>
 > Currently the `csgraph` and `linalg` submodules are not type annotated (see issue https://github.com/BarakKatzir/types-scipy-sparse/issues/5).
-> 
-> This package only supports `"numpy <2.0.0"` for now (see issue https://github.com/BarakKatzir/types-scipy-sparse/issues/7).
+>
+> This package only supports `numpy <2.0` for now (see issue https://github.com/BarakKatzir/types-scipy-sparse/issues/7).
+>
+> This package is tests against `scipy >=0.14"`, and is not guaranteed to work well for earlier versions.
 
 ## Installation
 
@@ -81,9 +83,9 @@ Success: no issues found in 1 source file
 > [!NOTE]
 > Since these generics are only introduced in the type stubs, they will raise an error at runtime. Thus, `x: coo_array[Any, numpy.dtype[numpy.uint8]]` will raise an error.
 > If you desire to use this feature when annotating `.py` files then there are two easy solutions:
-> 
+>
 > * Use implicit forward references by adding `from __future__ import annotations` at the top of your script
-> 
+>
 > * Use explicit forward references by putting troublesome annotations in quotation marks, e.g., `x: "coo_array[Any, numpy.dtype[numpy.uint8]]"`
 
 
@@ -163,7 +165,7 @@ def foo(x: SparseArray[numpy.float64]) -> None:
 
 ### What is and what isn't annotated?
 
-I aim to annotate all the public object of `scipy.sparse`, see https://github.com/BarakKatzir/types-scipy-sparse/issues/5 for track of missing types. However, most of the private objects are left untyped (the private functions/classes/methods are those whose name begin with `'_'` and do not end with `'_'`, or that they reside in a private module and are not re-exported in a public module). There are a few exceptions to this that I keep track of here.
+I aim to annotate all the public object of `scipy.sparse`, see issue https://github.com/BarakKatzir/types-scipy-sparse/issues/5 for track of missing types. However, most of the private objects are left untyped (the private functions/classes/methods are those whose name begin with `'_'` and do not end with `'_'`, or that they reside in a private module and are not re-exported in a public module). There are a few exceptions to this that I keep track of here.
 
 Currently, there are only two expections to the above rule: the function `_todata` and function `_ravel_coords` that seems useful and well docstringed.
 

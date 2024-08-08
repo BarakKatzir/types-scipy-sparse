@@ -20,6 +20,6 @@ jobs:
       - name: Set up Python 3.10
         run: uv python install python3.10
       - name: Install the project
-        run: uv sync --dev --locked
+        run: uv sync --dev --frozen
       - name: Run tests
         run: uv run tox

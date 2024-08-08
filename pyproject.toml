@@ -1,6 +1,6 @@
 [project]
 name = "types-scipy-sparse"
-version = "0.0.1"
+version = "0.1.0"
 description = "Type hints for scipy sparse module"
 authors = [{ name = "Barak A. Katzir", email = "barakatzir@gmail.com" }]
 requires-python = ">=3.10"

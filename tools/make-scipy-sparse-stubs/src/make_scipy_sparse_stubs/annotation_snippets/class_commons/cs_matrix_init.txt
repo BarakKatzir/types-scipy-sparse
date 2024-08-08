@@ -60,10 +60,12 @@ def __init__(
     dtype: npt.DTypeLike | None = ...,
 ) -> None: ...
 # input is data and indices
+# type annotation supports 1D for arrays, but that is only true for csr and not csc
+# TODO: do we want to refactor this?
 @overload
 def __init__(
     self: {_Self_Base}[Any, np.dtype[_SCT_co]],
-    arg1: tuple[npt.NDArray[_SCT_co], tuple[_ArrayLike1DIndex, _ArrayLike1DIndex]],
+    arg1: tuple[npt.NDArray[_SCT_co], tuple[_ArrayLike1DIndex, ...]],
     shape: _ShapeLike | None = ...,
     dtype: None = ...,
     copy: bool = ...,
@@ -73,7 +75,7 @@ def __init__(
     self: {_Self_Base}[Any, np.dtype[_SCT_co]],
     arg1: tuple[
         _ArrayLike1DDual[Any, Any],
-        tuple[_ArrayLike1DIndex, _ArrayLike1DIndex],
+        tuple[_ArrayLike1DIndex, ...],
     ],
     shape: _ShapeLike | None,
     dtype: _DTypeLike[_SCT_co],
@@ -84,7 +86,7 @@ def __init__(
     self: {_Self_Base}[Any, np.dtype[_SCT_co]],
     arg1: tuple[
         _ArrayLike1DDual[Any, Any],
-        tuple[_ArrayLike1DIndex, _ArrayLike1DIndex],
+        tuple[_ArrayLike1DIndex, ...],
     ],
     shape: _ShapeLike | None = ...,
     *,
@@ -96,7 +98,7 @@ def __init__(
     self,
     arg1: tuple[
         _ArrayLike1DDual[Any, Any],
-        tuple[_ArrayLike1DIndex, _ArrayLike1DIndex],
+        tuple[_ArrayLike1DIndex, ...],
     ],
     shape: _ShapeLike | None = ...,
     dtype: npt.DTypeLike | None = ...,

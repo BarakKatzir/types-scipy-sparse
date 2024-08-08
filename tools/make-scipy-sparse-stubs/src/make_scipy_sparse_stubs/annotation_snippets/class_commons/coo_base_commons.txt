@@ -66,13 +66,12 @@ def __init__(
     dtype: npt.DTypeLike | None = ...,
 ) -> None: ...
 # input is data and indices
-# TODO: add support for 1D array indices? check if csr/csc also need it
 @overload
 def __init__(
     self: {_Self_Base}[Any, np.dtype[_SCT_co]],
     arg1: tuple[
         _ArrayLike1DDual[Any, Any],
-        tuple[_ArrayLike1DIndex, _ArrayLike1DIndex],
+        tuple[_ArrayLike1DIndex,...],
     ],
     shape: _ShapeLike | None,
     dtype: _DTypeLike[_SCT_co],
@@ -83,7 +82,7 @@ def __init__(
     self: {_Self_Base}[Any, np.dtype[_SCT_co]],
     arg1: tuple[
         _ArrayLike1DDual[Any, Any],
-        tuple[_ArrayLike1DIndex, _ArrayLike1DIndex],
+        tuple[_ArrayLike1DIndex,...],
     ],
     shape: _ShapeLike | None = ...,
     *,
@@ -95,7 +94,7 @@ def __init__(
     self,
     arg1: tuple[
         _ArrayLike1DDual[Any, Any],
-        tuple[_ArrayLike1DIndex, _ArrayLike1DIndex],
+        tuple[_ArrayLike1DIndex,...],
     ],
     shape: _ShapeLike | None = ...,
     dtype: npt.DTypeLike | None = ...,

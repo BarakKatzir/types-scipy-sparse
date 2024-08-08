@@ -93,29 +93,3 @@ __all__ = [
     "triu",
     "vstack",
 ]
-
-# TODO: Names in __all__ with no definition:
-#   block_array
-#   block_diag
-#   bmat
-#   diags
-#   diags_array
-#   eye
-#   eye_array
-#   find
-#   hstack
-#   identity
-#   kron
-#   kronsum
-#   lil_array
-#   lil_matrix
-#   linalg
-#   load_npz
-#   rand
-#   random
-#   random_array
-#   save_npz
-#   spdiags
-#   tril
-#   triu
-#   vstack

@@ -302,6 +302,7 @@ def mean(
     dtype: npt.DTypeLike | None,
     out: _ArrayType,
 ) -> _ArrayType: ...
+# TODO: is the following comment about copy true?
 # In asformat, copy=False is not Type annotated, though is valid runtime value.
 # This is because the dynamic type change is not compatible with static type
 # checker.
@@ -345,6 +346,7 @@ def asformat(
     format: _Formats | None,
     copy: Literal[True],
 ) -> {_Sparse_Type}[_ShapeAnno, _DType_co]: ...
+# TODO: is the following comment about copy true?
 # In reshape, copy=False annotating is problematic, but I decided to copy from
 # numpy where it is permitted to mutate the shape without changing the ShapeType
 # typevar.
@@ -467,7 +469,6 @@ def __idiv__(
 def __itruediv__(
     self, other: npt.NDArray[Any] | SparseArray[Any]
 ) -> npt.NDArray[Any] | SparseArray[Any]: ...
-# TODO: I left a bunch of wrong comments around `copy: ...`: remove them
 @overload
 @property
 def T(

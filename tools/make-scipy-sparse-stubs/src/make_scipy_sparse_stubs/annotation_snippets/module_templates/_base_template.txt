@@ -56,7 +56,6 @@ class SparseEfficiencyWarning(SparseWarning): ...
 @runtime_checkable
 class sparray(Protocol[_ShapeAnno, _DType_co]):
 {cls_body}
-    # sparray format can be any value of its subclasses, which I leave as str
     @property
     def format(self) -> str: ...
 

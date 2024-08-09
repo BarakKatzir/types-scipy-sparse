@@ -521,7 +521,7 @@ def main() -> int:
         else:
             print(
                 f"Encountered error: {e}\n"
-                "For full tracestack run with make_scipy_sparse_stubs --verbose"
+                "For full tracestack run with make-scipy-sparse-stubs --verbose"
             )
         return 123
 

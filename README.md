@@ -214,21 +214,21 @@ The repository includes the stub generating CLI tool named `make-scipy-sparse-st
 To check that the stubs are in sync with the generated stubs run
 
 ```console
-$ python -m make_scipy_sparse_stubs --check
+$ python make-scipy-sparse-stubs --check
 Finished without any changes 🎉
 ```
 
 or to overwrite the current stubs by specifying their location in the workspace
 
 ```console
-$ python -m make_scipy_sparse_stubs -sp src/scipy-stubs
+$ python make-scipy-sparse-stubs -sp src/scipy-stubs
 Finished without any changes 🎉
 ```
 
 For more on the tool, see it's help:
 
 ```bash
-python -m make_scipy_sparse_stubs --help
+python make-scipy-sparse-stubs --help
 ```
 
 > [!WARNING]
@@ -246,7 +246,7 @@ or if you activated the venv, then simply run `tox`.
 
 The stubs are tested for:
 
-* type stubs match the generated `make_scipy_sparse_stubs` tool
+* type stubs match the generated `make-scipy-sparse-stubs` tool
 
 * `ruff` formatters and checkers
 

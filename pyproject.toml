@@ -1,6 +1,6 @@
 [project]
 name = "types-scipy-sparse"
-version = "0.1.0"
+version = "1.14.0.20240809"
 description = "Type hints for scipy sparse module"
 authors = [{ name = "Barak A. Katzir", email = "barakatzir@gmail.com" }]
 requires-python = ">=3.10"
@@ -21,8 +21,8 @@ classifiers = [
 readme = "README.md"
 dependencies = [
     "numpy >=1.23.5,<2",
-    "typing-extensions >=4.12",
-    "scipy >=1.14.0",
+    "typing-extensions >=4.12,<5",
+    "scipy ==1.14.0",
 ]
 license = { file = "LICENSE" }
 
@@ -41,7 +41,7 @@ dev-dependencies = [
     "tox-uv >=1,<2",
     "tox >=4,<5",
     "uv ==0.2.33",
-    "make-scipy-sparse-stubs ==0.1.0",
+    "make-scipy-sparse-stubs",
 ]
 
 [tool.uv.sources]

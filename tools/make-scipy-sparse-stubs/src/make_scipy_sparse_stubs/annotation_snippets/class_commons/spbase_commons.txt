@@ -467,13 +467,80 @@ def __idiv__(
 def __itruediv__(
     self, other: npt.NDArray[Any] | SparseArray[Any]
 ) -> npt.NDArray[Any] | SparseArray[Any]: ...
-
-# TODO: the `T` and `transpose` methods need refinement.csc -> csr anything else?
-# Despite T and transpose (if copy=False) by default mutate the shape of self, and
-# can cause incompatibility with the ShapeType variable, I followed numpy's
-# approach and allowed this.
+# TODO: I left a bunch of wrong comments around `copy: ...`: remove them
+@overload
+@property
+def T(
+    self: csr_{_sparse_suffix}[Any, _Dtype_co]
+) -> (
+    csc_{_sparse_suffix}[Any, _DType_co]
+    | csr_{_sparse_suffix}[Any, _DType_co]
+): ...
+@overload
+@property
+def T(
+    self: csc_{_sparse_suffix}[Any, _Dtype_co]
+) -> csr_{_sparse_suffix}[Any, _DType_co]: ...
+@overload
+@property
+def T(
+    self: coo_{_sparse_suffix}[Any, _Dtype_co]
+) -> coo_{_sparse_suffix}[Any, _DType_co]: ...
+@overload
+@property
+def T(
+    self: dia_{_sparse_suffix}[Any, _Dtype_co]
+) -> dia_{_sparse_suffix}[Any, _DType_co]: ...
+@overload
+@property
+def T(
+    self: dok_{_sparse_suffix}[Any, _Dtype_co]
+) -> dok_{_sparse_suffix}[Any, _DType_co]: ...
+@overload
+@property
+def T(
+    self: bsr_{_sparse_suffix}[Any, _Dtype_co]
+) -> bsr_{_sparse_suffix}[Any, _DType_co]: ...
+@overload
+@property
+def T(
+    self: lil_{_sparse_suffix}[Any, _Dtype_co]
+) -> lil_{_sparse_suffix}[Any, _DType_co]: ...
+@overload
 @property
 def T(self) -> {_Sparse_Type}[Any, _DType_co]: ...
+@overload
+def transpose(
+    self: csr_{_sparse_suffix}, axes: None = ..., copy: bool = ...
+) -> (
+    csc_{_sparse_suffix}[Any, _DType_co]
+    | csr_{_sparse_suffix}[Any, _DType_co]
+): ...
+@overload
+def transpose(
+    self: csc_{_sparse_suffix}, axes: None = ..., copy: bool = ...
+) -> csr_{_sparse_suffix}[Any, _DType_co]: ...
+@overload
+def transpose(
+    self: coo_{_sparse_suffix}, axes: None = ..., copy: bool = ...
+) -> coo_{_sparse_suffix}[Any, _DType_co]: ...
+@overload
+def transpose(
+    self: dia_{_sparse_suffix}, axes: None = ..., copy: bool = ...
+) -> dia_{_sparse_suffix}[Any, _DType_co]: ...
+@overload
+def transpose(
+    self: dok_{_sparse_suffix}, axes: None = ..., copy: bool = ...
+) -> dok_{_sparse_suffix}[Any, _DType_co]: ...
+@overload
+def transpose(
+    self: bsr_{_sparse_suffix}, axes: None = ..., copy: bool = ...
+) -> bsr_{_sparse_suffix}[Any, _DType_co]: ...
+@overload
+def transpose(
+    self: lil_{_sparse_suffix}, axes: None = ..., copy: bool = ...
+) -> lil_{_sparse_suffix}[Any, _DType_co]: ...
+@overload
 def transpose(
     self, axes: None = ..., copy: bool = ...
 ) -> {_Sparse_Type}[Any, _DType_co]: ...

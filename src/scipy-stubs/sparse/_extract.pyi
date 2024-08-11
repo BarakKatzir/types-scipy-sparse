@@ -18,12 +18,20 @@ __all__ = ["find", "tril", "triu"]
 
 @overload
 def find(
-    A: SparseArray[_SCT] | npt.NDArray[_SCT],
-) -> tuple[npt.NDArray[np.int_], npt.NDArray[np.int_], npt.NDArray[_SCT]]: ...
+    A: SparseArray[_SCT] | np.ndarray[Any, np.dtype[_SCT]],
+) -> tuple[
+    np.ndarray[Any, np.dtype[np.int_]],
+    np.ndarray[Any, np.dtype[np.int_]],
+    np.ndarray[Any, np.dtype[_SCT]],
+]: ...
 @overload
 def find(
     A: SparseArray[Any] | npt.ArrayLike,
-) -> tuple[npt.NDArray[np.int_], npt.NDArray[np.int_], npt.NDArray[Any]]: ...
+) -> tuple[
+    np.ndarray[Any, np.dtype[np.int_]],
+    np.ndarray[Any, np.dtype[np.int_]],
+    np.ndarray[Any, Any],
+]: ...
 @overload
 def tril(
     A: sparray[Any, np.dtype[_SCT]],
@@ -32,7 +40,7 @@ def tril(
 ) -> coo_array[Any, np.dtype[_SCT]]: ...
 @overload
 def tril(
-    A: spmatrix[Any, np.dtype[_SCT]] | npt.NDArray[_SCT],
+    A: spmatrix[Any, np.dtype[_SCT]] | np.ndarray[Any, np.dtype[_SCT]],
     k: SupportsIndex = ...,
     format: Literal["coo"] | None = ...,
 ) -> coo_matrix[Any, np.dtype[_SCT]]: ...
@@ -57,13 +65,13 @@ def tril(
 ) -> csc_array[Any, np.dtype[_SCT]]: ...
 @overload
 def tril(
-    A: spmatrix[Any, np.dtype[_SCT]] | npt.NDArray[_SCT],
+    A: spmatrix[Any, np.dtype[_SCT]] | np.ndarray[Any, np.dtype[_SCT]],
     k: SupportsIndex,
     format: Literal["csc"],
 ) -> csc_matrix[Any, np.dtype[_SCT]]: ...
 @overload
 def tril(
-    A: spmatrix[Any, np.dtype[_SCT]] | npt.NDArray[_SCT],
+    A: spmatrix[Any, np.dtype[_SCT]] | np.ndarray[Any, np.dtype[_SCT]],
     k: SupportsIndex = ...,
     *,
     format: Literal["csc"],
@@ -96,13 +104,13 @@ def tril(
 ) -> csr_array[Any, np.dtype[_SCT]]: ...
 @overload
 def tril(
-    A: spmatrix[Any, np.dtype[_SCT]] | npt.NDArray[_SCT],
+    A: spmatrix[Any, np.dtype[_SCT]] | np.ndarray[Any, np.dtype[_SCT]],
     k: SupportsIndex,
     format: Literal["csr"],
 ) -> csr_matrix[Any, np.dtype[_SCT]]: ...
 @overload
 def tril(
-    A: spmatrix[Any, np.dtype[_SCT]] | npt.NDArray[_SCT],
+    A: spmatrix[Any, np.dtype[_SCT]] | np.ndarray[Any, np.dtype[_SCT]],
     k: SupportsIndex = ...,
     *,
     format: Literal["csr"],
@@ -135,13 +143,13 @@ def tril(
 ) -> bsr_array[Any, np.dtype[_SCT]]: ...
 @overload
 def tril(
-    A: spmatrix[Any, np.dtype[_SCT]] | npt.NDArray[_SCT],
+    A: spmatrix[Any, np.dtype[_SCT]] | np.ndarray[Any, np.dtype[_SCT]],
     k: SupportsIndex,
     format: Literal["bsr"],
 ) -> bsr_matrix[Any, np.dtype[_SCT]]: ...
 @overload
 def tril(
-    A: spmatrix[Any, np.dtype[_SCT]] | npt.NDArray[_SCT],
+    A: spmatrix[Any, np.dtype[_SCT]] | np.ndarray[Any, np.dtype[_SCT]],
     k: SupportsIndex = ...,
     *,
     format: Literal["bsr"],
@@ -174,13 +182,13 @@ def tril(
 ) -> dia_array[Any, np.dtype[_SCT]]: ...
 @overload
 def tril(
-    A: spmatrix[Any, np.dtype[_SCT]] | npt.NDArray[_SCT],
+    A: spmatrix[Any, np.dtype[_SCT]] | np.ndarray[Any, np.dtype[_SCT]],
     k: SupportsIndex,
     format: Literal["dia"],
 ) -> dia_matrix[Any, np.dtype[_SCT]]: ...
 @overload
 def tril(
-    A: spmatrix[Any, np.dtype[_SCT]] | npt.NDArray[_SCT],
+    A: spmatrix[Any, np.dtype[_SCT]] | np.ndarray[Any, np.dtype[_SCT]],
     k: SupportsIndex = ...,
     *,
     format: Literal["dia"],
@@ -213,13 +221,13 @@ def tril(
 ) -> dok_array[Any, np.dtype[_SCT]]: ...
 @overload
 def tril(
-    A: spmatrix[Any, np.dtype[_SCT]] | npt.NDArray[_SCT],
+    A: spmatrix[Any, np.dtype[_SCT]] | np.ndarray[Any, np.dtype[_SCT]],
     k: SupportsIndex,
     format: Literal["dok"],
 ) -> dok_matrix[Any, np.dtype[_SCT]]: ...
 @overload
 def tril(
-    A: spmatrix[Any, np.dtype[_SCT]] | npt.NDArray[_SCT],
+    A: spmatrix[Any, np.dtype[_SCT]] | np.ndarray[Any, np.dtype[_SCT]],
     k: SupportsIndex = ...,
     *,
     format: Literal["dok"],
@@ -252,13 +260,13 @@ def tril(
 ) -> lil_array[Any, np.dtype[_SCT]]: ...
 @overload
 def tril(
-    A: spmatrix[Any, np.dtype[_SCT]] | npt.NDArray[_SCT],
+    A: spmatrix[Any, np.dtype[_SCT]] | np.ndarray[Any, np.dtype[_SCT]],
     k: SupportsIndex,
     format: Literal["lil"],
 ) -> lil_matrix[Any, np.dtype[_SCT]]: ...
 @overload
 def tril(
-    A: spmatrix[Any, np.dtype[_SCT]] | npt.NDArray[_SCT],
+    A: spmatrix[Any, np.dtype[_SCT]] | np.ndarray[Any, np.dtype[_SCT]],
     k: SupportsIndex = ...,
     *,
     format: Literal["lil"],
@@ -284,7 +292,7 @@ def triu(
 ) -> coo_array[Any, np.dtype[_SCT]]: ...
 @overload
 def triu(
-    A: spmatrix[Any, np.dtype[_SCT]] | npt.NDArray[_SCT],
+    A: spmatrix[Any, np.dtype[_SCT]] | np.ndarray[Any, np.dtype[_SCT]],
     k: SupportsIndex = ...,
     format: Literal["coo"] | None = ...,
 ) -> coo_matrix[Any, np.dtype[_SCT]]: ...
@@ -309,13 +317,13 @@ def triu(
 ) -> csc_array[Any, np.dtype[_SCT]]: ...
 @overload
 def triu(
-    A: spmatrix[Any, np.dtype[_SCT]] | npt.NDArray[_SCT],
+    A: spmatrix[Any, np.dtype[_SCT]] | np.ndarray[Any, np.dtype[_SCT]],
     k: SupportsIndex,
     format: Literal["csc"],
 ) -> csc_matrix[Any, np.dtype[_SCT]]: ...
 @overload
 def triu(
-    A: spmatrix[Any, np.dtype[_SCT]] | npt.NDArray[_SCT],
+    A: spmatrix[Any, np.dtype[_SCT]] | np.ndarray[Any, np.dtype[_SCT]],
     k: SupportsIndex = ...,
     *,
     format: Literal["csc"],
@@ -348,13 +356,13 @@ def triu(
 ) -> csr_array[Any, np.dtype[_SCT]]: ...
 @overload
 def triu(
-    A: spmatrix[Any, np.dtype[_SCT]] | npt.NDArray[_SCT],
+    A: spmatrix[Any, np.dtype[_SCT]] | np.ndarray[Any, np.dtype[_SCT]],
     k: SupportsIndex,
     format: Literal["csr"],
 ) -> csr_matrix[Any, np.dtype[_SCT]]: ...
 @overload
 def triu(
-    A: spmatrix[Any, np.dtype[_SCT]] | npt.NDArray[_SCT],
+    A: spmatrix[Any, np.dtype[_SCT]] | np.ndarray[Any, np.dtype[_SCT]],
     k: SupportsIndex = ...,
     *,
     format: Literal["csr"],
@@ -387,13 +395,13 @@ def triu(
 ) -> bsr_array[Any, np.dtype[_SCT]]: ...
 @overload
 def triu(
-    A: spmatrix[Any, np.dtype[_SCT]] | npt.NDArray[_SCT],
+    A: spmatrix[Any, np.dtype[_SCT]] | np.ndarray[Any, np.dtype[_SCT]],
     k: SupportsIndex,
     format: Literal["bsr"],
 ) -> bsr_matrix[Any, np.dtype[_SCT]]: ...
 @overload
 def triu(
-    A: spmatrix[Any, np.dtype[_SCT]] | npt.NDArray[_SCT],
+    A: spmatrix[Any, np.dtype[_SCT]] | np.ndarray[Any, np.dtype[_SCT]],
     k: SupportsIndex = ...,
     *,
     format: Literal["bsr"],
@@ -426,13 +434,13 @@ def triu(
 ) -> dia_array[Any, np.dtype[_SCT]]: ...
 @overload
 def triu(
-    A: spmatrix[Any, np.dtype[_SCT]] | npt.NDArray[_SCT],
+    A: spmatrix[Any, np.dtype[_SCT]] | np.ndarray[Any, np.dtype[_SCT]],
     k: SupportsIndex,
     format: Literal["dia"],
 ) -> dia_matrix[Any, np.dtype[_SCT]]: ...
 @overload
 def triu(
-    A: spmatrix[Any, np.dtype[_SCT]] | npt.NDArray[_SCT],
+    A: spmatrix[Any, np.dtype[_SCT]] | np.ndarray[Any, np.dtype[_SCT]],
     k: SupportsIndex = ...,
     *,
     format: Literal["dia"],
@@ -465,13 +473,13 @@ def triu(
 ) -> dok_array[Any, np.dtype[_SCT]]: ...
 @overload
 def triu(
-    A: spmatrix[Any, np.dtype[_SCT]] | npt.NDArray[_SCT],
+    A: spmatrix[Any, np.dtype[_SCT]] | np.ndarray[Any, np.dtype[_SCT]],
     k: SupportsIndex,
     format: Literal["dok"],
 ) -> dok_matrix[Any, np.dtype[_SCT]]: ...
 @overload
 def triu(
-    A: spmatrix[Any, np.dtype[_SCT]] | npt.NDArray[_SCT],
+    A: spmatrix[Any, np.dtype[_SCT]] | np.ndarray[Any, np.dtype[_SCT]],
     k: SupportsIndex = ...,
     *,
     format: Literal["dok"],
@@ -504,13 +512,13 @@ def triu(
 ) -> lil_array[Any, np.dtype[_SCT]]: ...
 @overload
 def triu(
-    A: spmatrix[Any, np.dtype[_SCT]] | npt.NDArray[_SCT],
+    A: spmatrix[Any, np.dtype[_SCT]] | np.ndarray[Any, np.dtype[_SCT]],
     k: SupportsIndex,
     format: Literal["lil"],
 ) -> lil_matrix[Any, np.dtype[_SCT]]: ...
 @overload
 def triu(
-    A: spmatrix[Any, np.dtype[_SCT]] | npt.NDArray[_SCT],
+    A: spmatrix[Any, np.dtype[_SCT]] | np.ndarray[Any, np.dtype[_SCT]],
     k: SupportsIndex = ...,
     *,
     format: Literal["lil"],

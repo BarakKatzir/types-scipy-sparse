@@ -2,7 +2,7 @@
 # common methods from _lil_base
 ###########################################################################
 dtype: _DType_co
-rows: npt.NDArray[np.object_]  # ndarray of lists
+rows: np.ndarray[Any, np.dtype[np.object_]]  # ndarray of lists
 data: np.ndarray[Any, _DType_co]
 @property
 def format(self) -> Literal["lil"]: ...

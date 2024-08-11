@@ -50,7 +50,7 @@ __all__ = [
 
 @overload
 def spdiags(
-    data: npt.NDArray[_SCT_co],
+    data: np.ndarray[Any, np.dtype[_SCT_co]],
     diags: _ArrayLike1DIndex | SupportsIndex,
     m: None | tuple[SupportsIndex, SupportsIndex] = ...,
     n: None = ...,
@@ -66,7 +66,7 @@ def spdiags(
 ) -> dia_matrix[Any, Any]: ...
 @overload
 def spdiags(
-    data: npt.NDArray[_SCT_co],
+    data: np.ndarray[Any, np.dtype[_SCT_co]],
     diags: _ArrayLike1DIndex | SupportsIndex,
     m: None | tuple[SupportsIndex, SupportsIndex],
     n: None,
@@ -74,7 +74,7 @@ def spdiags(
 ) -> csc_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def spdiags(
-    data: npt.NDArray[_SCT_co],
+    data: np.ndarray[Any, np.dtype[_SCT_co]],
     diags: _ArrayLike1DIndex | SupportsIndex,
     m: None | tuple[SupportsIndex, SupportsIndex] = ...,
     n: None = ...,
@@ -91,7 +91,7 @@ def spdiags(
 ) -> csc_matrix[Any, Any]: ...
 @overload
 def spdiags(
-    data: npt.NDArray[_SCT_co],
+    data: np.ndarray[Any, np.dtype[_SCT_co]],
     diags: _ArrayLike1DIndex | SupportsIndex,
     m: None | tuple[SupportsIndex, SupportsIndex],
     n: None,
@@ -99,7 +99,7 @@ def spdiags(
 ) -> csr_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def spdiags(
-    data: npt.NDArray[_SCT_co],
+    data: np.ndarray[Any, np.dtype[_SCT_co]],
     diags: _ArrayLike1DIndex | SupportsIndex,
     m: None | tuple[SupportsIndex, SupportsIndex] = ...,
     n: None = ...,
@@ -116,7 +116,7 @@ def spdiags(
 ) -> csr_matrix[Any, Any]: ...
 @overload
 def spdiags(
-    data: npt.NDArray[_SCT_co],
+    data: np.ndarray[Any, np.dtype[_SCT_co]],
     diags: _ArrayLike1DIndex | SupportsIndex,
     m: None | tuple[SupportsIndex, SupportsIndex],
     n: None,
@@ -124,7 +124,7 @@ def spdiags(
 ) -> coo_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def spdiags(
-    data: npt.NDArray[_SCT_co],
+    data: np.ndarray[Any, np.dtype[_SCT_co]],
     diags: _ArrayLike1DIndex | SupportsIndex,
     m: None | tuple[SupportsIndex, SupportsIndex] = ...,
     n: None = ...,
@@ -141,7 +141,7 @@ def spdiags(
 ) -> coo_matrix[Any, Any]: ...
 @overload
 def spdiags(
-    data: npt.NDArray[_SCT_co],
+    data: np.ndarray[Any, np.dtype[_SCT_co]],
     diags: _ArrayLike1DIndex | SupportsIndex,
     m: None | tuple[SupportsIndex, SupportsIndex],
     n: None,
@@ -149,7 +149,7 @@ def spdiags(
 ) -> bsr_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def spdiags(
-    data: npt.NDArray[_SCT_co],
+    data: np.ndarray[Any, np.dtype[_SCT_co]],
     diags: _ArrayLike1DIndex | SupportsIndex,
     m: None | tuple[SupportsIndex, SupportsIndex] = ...,
     n: None = ...,
@@ -166,7 +166,7 @@ def spdiags(
 ) -> bsr_matrix[Any, Any]: ...
 @overload
 def spdiags(
-    data: npt.NDArray[_SCT_co],
+    data: np.ndarray[Any, np.dtype[_SCT_co]],
     diags: _ArrayLike1DIndex | SupportsIndex,
     m: None | tuple[SupportsIndex, SupportsIndex],
     n: None,
@@ -174,7 +174,7 @@ def spdiags(
 ) -> dia_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def spdiags(
-    data: npt.NDArray[_SCT_co],
+    data: np.ndarray[Any, np.dtype[_SCT_co]],
     diags: _ArrayLike1DIndex | SupportsIndex,
     m: None | tuple[SupportsIndex, SupportsIndex] = ...,
     n: None = ...,
@@ -191,7 +191,7 @@ def spdiags(
 ) -> dia_matrix[Any, Any]: ...
 @overload
 def spdiags(
-    data: npt.NDArray[_SCT_co],
+    data: np.ndarray[Any, np.dtype[_SCT_co]],
     diags: _ArrayLike1DIndex | SupportsIndex,
     m: None | tuple[SupportsIndex, SupportsIndex],
     n: None,
@@ -199,7 +199,7 @@ def spdiags(
 ) -> dok_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def spdiags(
-    data: npt.NDArray[_SCT_co],
+    data: np.ndarray[Any, np.dtype[_SCT_co]],
     diags: _ArrayLike1DIndex | SupportsIndex,
     m: None | tuple[SupportsIndex, SupportsIndex] = ...,
     n: None = ...,
@@ -216,7 +216,7 @@ def spdiags(
 ) -> dok_matrix[Any, Any]: ...
 @overload
 def spdiags(
-    data: npt.NDArray[_SCT_co],
+    data: np.ndarray[Any, np.dtype[_SCT_co]],
     diags: _ArrayLike1DIndex | SupportsIndex,
     m: None | tuple[SupportsIndex, SupportsIndex],
     n: None,
@@ -224,7 +224,7 @@ def spdiags(
 ) -> lil_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def spdiags(
-    data: npt.NDArray[_SCT_co],
+    data: np.ndarray[Any, np.dtype[_SCT_co]],
     diags: _ArrayLike1DIndex | SupportsIndex,
     m: None | tuple[SupportsIndex, SupportsIndex] = ...,
     n: None = ...,
@@ -241,7 +241,7 @@ def spdiags(
 ) -> lil_matrix[Any, Any]: ...
 @overload
 def diags_array(
-    diagonals: npt.NDArray[_SCT_co],
+    diagonals: np.ndarray[Any, np.dtype[_SCT_co]],
     /,
     *,
     offsets: _ArrayLike1DIndex | SupportsIndex = ...,
@@ -271,7 +271,7 @@ def diags_array(
 ) -> csc_array[Any, Any]: ...
 @overload
 def diags_array(
-    diagonals: npt.NDArray[_SCT_co],
+    diagonals: np.ndarray[Any, np.dtype[_SCT_co]],
     /,
     *,
     offsets: _ArrayLike1DIndex | SupportsIndex = ...,
@@ -301,7 +301,7 @@ def diags_array(
 ) -> csr_array[Any, Any]: ...
 @overload
 def diags_array(
-    diagonals: npt.NDArray[_SCT_co],
+    diagonals: np.ndarray[Any, np.dtype[_SCT_co]],
     /,
     *,
     offsets: _ArrayLike1DIndex | SupportsIndex = ...,
@@ -331,7 +331,7 @@ def diags_array(
 ) -> coo_array[Any, Any]: ...
 @overload
 def diags_array(
-    diagonals: npt.NDArray[_SCT_co],
+    diagonals: np.ndarray[Any, np.dtype[_SCT_co]],
     /,
     *,
     offsets: _ArrayLike1DIndex | SupportsIndex = ...,
@@ -361,7 +361,7 @@ def diags_array(
 ) -> bsr_array[Any, Any]: ...
 @overload
 def diags_array(
-    diagonals: npt.NDArray[_SCT_co],
+    diagonals: np.ndarray[Any, np.dtype[_SCT_co]],
     /,
     *,
     offsets: _ArrayLike1DIndex | SupportsIndex = ...,
@@ -391,7 +391,7 @@ def diags_array(
 ) -> dia_array[Any, Any]: ...
 @overload
 def diags_array(
-    diagonals: npt.NDArray[_SCT_co],
+    diagonals: np.ndarray[Any, np.dtype[_SCT_co]],
     /,
     *,
     offsets: _ArrayLike1DIndex | SupportsIndex = ...,
@@ -421,7 +421,7 @@ def diags_array(
 ) -> dok_array[Any, Any]: ...
 @overload
 def diags_array(
-    diagonals: npt.NDArray[_SCT_co],
+    diagonals: np.ndarray[Any, np.dtype[_SCT_co]],
     /,
     *,
     offsets: _ArrayLike1DIndex | SupportsIndex = ...,
@@ -451,7 +451,7 @@ def diags_array(
 ) -> lil_array[Any, Any]: ...
 @overload
 def diags(
-    diagonals: npt.NDArray[_SCT_co],
+    diagonals: np.ndarray[Any, np.dtype[_SCT_co]],
     offsets: _ArrayLike1DIndex | SupportsIndex = ...,
     shape: None | tuple[SupportsIndex, SupportsIndex] = ...,
     format: None = ...,
@@ -484,7 +484,7 @@ def diags(
 ) -> spmatrix[Any, Any]: ...
 @overload
 def diags(
-    diagonals: npt.NDArray[_SCT_co],
+    diagonals: np.ndarray[Any, np.dtype[_SCT_co]],
     offsets: _ArrayLike1DIndex | SupportsIndex = ...,
     shape: None | tuple[SupportsIndex, SupportsIndex] = ...,
     *,
@@ -493,7 +493,7 @@ def diags(
 ) -> csc_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def diags(
-    diagonals: npt.NDArray[_SCT_co],
+    diagonals: np.ndarray[Any, np.dtype[_SCT_co]],
     offsets: _ArrayLike1DIndex | SupportsIndex,
     shape: None | tuple[SupportsIndex, SupportsIndex],
     format: Literal["csc"],
@@ -535,7 +535,7 @@ def diags(
 ) -> csc_matrix[Any, Any]: ...
 @overload
 def diags(
-    diagonals: npt.NDArray[_SCT_co],
+    diagonals: np.ndarray[Any, np.dtype[_SCT_co]],
     offsets: _ArrayLike1DIndex | SupportsIndex = ...,
     shape: None | tuple[SupportsIndex, SupportsIndex] = ...,
     *,
@@ -544,7 +544,7 @@ def diags(
 ) -> csr_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def diags(
-    diagonals: npt.NDArray[_SCT_co],
+    diagonals: np.ndarray[Any, np.dtype[_SCT_co]],
     offsets: _ArrayLike1DIndex | SupportsIndex,
     shape: None | tuple[SupportsIndex, SupportsIndex],
     format: Literal["csr"],
@@ -586,7 +586,7 @@ def diags(
 ) -> csr_matrix[Any, Any]: ...
 @overload
 def diags(
-    diagonals: npt.NDArray[_SCT_co],
+    diagonals: np.ndarray[Any, np.dtype[_SCT_co]],
     offsets: _ArrayLike1DIndex | SupportsIndex = ...,
     shape: None | tuple[SupportsIndex, SupportsIndex] = ...,
     *,
@@ -595,7 +595,7 @@ def diags(
 ) -> coo_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def diags(
-    diagonals: npt.NDArray[_SCT_co],
+    diagonals: np.ndarray[Any, np.dtype[_SCT_co]],
     offsets: _ArrayLike1DIndex | SupportsIndex,
     shape: None | tuple[SupportsIndex, SupportsIndex],
     format: Literal["coo"],
@@ -637,7 +637,7 @@ def diags(
 ) -> coo_matrix[Any, Any]: ...
 @overload
 def diags(
-    diagonals: npt.NDArray[_SCT_co],
+    diagonals: np.ndarray[Any, np.dtype[_SCT_co]],
     offsets: _ArrayLike1DIndex | SupportsIndex = ...,
     shape: None | tuple[SupportsIndex, SupportsIndex] = ...,
     *,
@@ -646,7 +646,7 @@ def diags(
 ) -> bsr_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def diags(
-    diagonals: npt.NDArray[_SCT_co],
+    diagonals: np.ndarray[Any, np.dtype[_SCT_co]],
     offsets: _ArrayLike1DIndex | SupportsIndex,
     shape: None | tuple[SupportsIndex, SupportsIndex],
     format: Literal["bsr"],
@@ -688,7 +688,7 @@ def diags(
 ) -> bsr_matrix[Any, Any]: ...
 @overload
 def diags(
-    diagonals: npt.NDArray[_SCT_co],
+    diagonals: np.ndarray[Any, np.dtype[_SCT_co]],
     offsets: _ArrayLike1DIndex | SupportsIndex = ...,
     shape: None | tuple[SupportsIndex, SupportsIndex] = ...,
     *,
@@ -697,7 +697,7 @@ def diags(
 ) -> dia_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def diags(
-    diagonals: npt.NDArray[_SCT_co],
+    diagonals: np.ndarray[Any, np.dtype[_SCT_co]],
     offsets: _ArrayLike1DIndex | SupportsIndex,
     shape: None | tuple[SupportsIndex, SupportsIndex],
     format: Literal["dia"],
@@ -739,7 +739,7 @@ def diags(
 ) -> dia_matrix[Any, Any]: ...
 @overload
 def diags(
-    diagonals: npt.NDArray[_SCT_co],
+    diagonals: np.ndarray[Any, np.dtype[_SCT_co]],
     offsets: _ArrayLike1DIndex | SupportsIndex = ...,
     shape: None | tuple[SupportsIndex, SupportsIndex] = ...,
     *,
@@ -748,7 +748,7 @@ def diags(
 ) -> dok_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def diags(
-    diagonals: npt.NDArray[_SCT_co],
+    diagonals: np.ndarray[Any, np.dtype[_SCT_co]],
     offsets: _ArrayLike1DIndex | SupportsIndex,
     shape: None | tuple[SupportsIndex, SupportsIndex],
     format: Literal["dok"],
@@ -790,7 +790,7 @@ def diags(
 ) -> dok_matrix[Any, Any]: ...
 @overload
 def diags(
-    diagonals: npt.NDArray[_SCT_co],
+    diagonals: np.ndarray[Any, np.dtype[_SCT_co]],
     offsets: _ArrayLike1DIndex | SupportsIndex = ...,
     shape: None | tuple[SupportsIndex, SupportsIndex] = ...,
     *,
@@ -799,7 +799,7 @@ def diags(
 ) -> lil_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def diags(
-    diagonals: npt.NDArray[_SCT_co],
+    diagonals: np.ndarray[Any, np.dtype[_SCT_co]],
     offsets: _ArrayLike1DIndex | SupportsIndex,
     shape: None | tuple[SupportsIndex, SupportsIndex],
     format: Literal["lil"],
@@ -2052,421 +2052,421 @@ def kronsum(
 ) -> lil_matrix[Any, Any]: ...
 @overload
 def hstack(
-    blocks: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    blocks: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: None,
     dtype: _DTypeLike[_SCT_co],
 ) -> spmatrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def hstack(
-    blocks: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    blocks: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: None = ...,
     *,
     dtype: _DTypeLike[_SCT_co],
 ) -> spmatrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def hstack(
-    blocks: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    blocks: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: None = ...,
     dtype: npt.DTypeLike | None = ...,
 ) -> spmatrix[Any, Any]: ...
 @overload
 def hstack(
-    blocks: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    blocks: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: None,
     dtype: _DTypeLike[_SCT_co],
 ) -> SparseArray[_SCT_co]: ...
 @overload
 def hstack(
-    blocks: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    blocks: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: None = ...,
     *,
     dtype: np.dtype[_SCT_co],
 ) -> SparseArray[_SCT_co]: ...
 @overload
 def hstack(
-    blocks: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    blocks: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: None = ...,
     dtype: npt.DTypeLike | None = ...,
 ) -> SparseArray[Any]: ...
 @overload
 def hstack(
-    blocks: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    blocks: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["csc"],
     dtype: _DTypeLike[_SCT_co],
 ) -> csc_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def hstack(
-    blocks: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    blocks: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["csc"],
     dtype: npt.DTypeLike | None = ...,
 ) -> csc_matrix[Any, Any]: ...
 @overload
 def hstack(
-    blocks: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    blocks: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["csc"],
     dtype: _DTypeLike[_SCT_co],
 ) -> csc_array[Any, np.dtype[_SCT_co]] | csc_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def hstack(
-    blocks: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    blocks: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["csc"],
     dtype: npt.DTypeLike | None = ...,
 ) -> csc_array[Any, np.dtype[_SCT_co]] | csc_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def hstack(
-    blocks: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    blocks: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["csr"],
     dtype: _DTypeLike[_SCT_co],
 ) -> csr_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def hstack(
-    blocks: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    blocks: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["csr"],
     dtype: npt.DTypeLike | None = ...,
 ) -> csr_matrix[Any, Any]: ...
 @overload
 def hstack(
-    blocks: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    blocks: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["csr"],
     dtype: _DTypeLike[_SCT_co],
 ) -> csr_array[Any, np.dtype[_SCT_co]] | csr_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def hstack(
-    blocks: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    blocks: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["csr"],
     dtype: npt.DTypeLike | None = ...,
 ) -> csr_array[Any, np.dtype[_SCT_co]] | csr_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def hstack(
-    blocks: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    blocks: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["coo"],
     dtype: _DTypeLike[_SCT_co],
 ) -> coo_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def hstack(
-    blocks: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    blocks: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["coo"],
     dtype: npt.DTypeLike | None = ...,
 ) -> coo_matrix[Any, Any]: ...
 @overload
 def hstack(
-    blocks: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    blocks: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["coo"],
     dtype: _DTypeLike[_SCT_co],
 ) -> coo_array[Any, np.dtype[_SCT_co]] | coo_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def hstack(
-    blocks: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    blocks: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["coo"],
     dtype: npt.DTypeLike | None = ...,
 ) -> coo_array[Any, np.dtype[_SCT_co]] | coo_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def hstack(
-    blocks: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    blocks: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["bsr"],
     dtype: _DTypeLike[_SCT_co],
 ) -> bsr_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def hstack(
-    blocks: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    blocks: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["bsr"],
     dtype: npt.DTypeLike | None = ...,
 ) -> bsr_matrix[Any, Any]: ...
 @overload
 def hstack(
-    blocks: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    blocks: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["bsr"],
     dtype: _DTypeLike[_SCT_co],
 ) -> bsr_array[Any, np.dtype[_SCT_co]] | bsr_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def hstack(
-    blocks: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    blocks: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["bsr"],
     dtype: npt.DTypeLike | None = ...,
 ) -> bsr_array[Any, np.dtype[_SCT_co]] | bsr_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def hstack(
-    blocks: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    blocks: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["dia"],
     dtype: _DTypeLike[_SCT_co],
 ) -> dia_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def hstack(
-    blocks: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    blocks: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["dia"],
     dtype: npt.DTypeLike | None = ...,
 ) -> dia_matrix[Any, Any]: ...
 @overload
 def hstack(
-    blocks: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    blocks: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["dia"],
     dtype: _DTypeLike[_SCT_co],
 ) -> dia_array[Any, np.dtype[_SCT_co]] | dia_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def hstack(
-    blocks: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    blocks: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["dia"],
     dtype: npt.DTypeLike | None = ...,
 ) -> dia_array[Any, np.dtype[_SCT_co]] | dia_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def hstack(
-    blocks: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    blocks: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["dok"],
     dtype: _DTypeLike[_SCT_co],
 ) -> dok_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def hstack(
-    blocks: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    blocks: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["dok"],
     dtype: npt.DTypeLike | None = ...,
 ) -> dok_matrix[Any, Any]: ...
 @overload
 def hstack(
-    blocks: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    blocks: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["dok"],
     dtype: _DTypeLike[_SCT_co],
 ) -> dok_array[Any, np.dtype[_SCT_co]] | dok_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def hstack(
-    blocks: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    blocks: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["dok"],
     dtype: npt.DTypeLike | None = ...,
 ) -> dok_array[Any, np.dtype[_SCT_co]] | dok_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def hstack(
-    blocks: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    blocks: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["lil"],
     dtype: _DTypeLike[_SCT_co],
 ) -> lil_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def hstack(
-    blocks: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    blocks: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["lil"],
     dtype: npt.DTypeLike | None = ...,
 ) -> lil_matrix[Any, Any]: ...
 @overload
 def hstack(
-    blocks: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    blocks: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["lil"],
     dtype: _DTypeLike[_SCT_co],
 ) -> lil_array[Any, np.dtype[_SCT_co]] | lil_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def hstack(
-    blocks: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    blocks: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["lil"],
     dtype: npt.DTypeLike | None = ...,
 ) -> lil_array[Any, np.dtype[_SCT_co]] | lil_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def vstack(
-    blocks: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    blocks: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: None,
     dtype: _DTypeLike[_SCT_co],
 ) -> spmatrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def vstack(
-    blocks: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    blocks: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: None = ...,
     *,
     dtype: _DTypeLike[_SCT_co],
 ) -> spmatrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def vstack(
-    blocks: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    blocks: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: None = ...,
     dtype: npt.DTypeLike | None = ...,
 ) -> spmatrix[Any, Any]: ...
 @overload
 def vstack(
-    blocks: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    blocks: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: None,
     dtype: _DTypeLike[_SCT_co],
 ) -> SparseArray[_SCT_co]: ...
 @overload
 def vstack(
-    blocks: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    blocks: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: None = ...,
     *,
     dtype: np.dtype[_SCT_co],
 ) -> SparseArray[_SCT_co]: ...
 @overload
 def vstack(
-    blocks: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    blocks: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: None = ...,
     dtype: npt.DTypeLike | None = ...,
 ) -> SparseArray[Any]: ...
 @overload
 def vstack(
-    blocks: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    blocks: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["csc"],
     dtype: _DTypeLike[_SCT_co],
 ) -> csc_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def vstack(
-    blocks: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    blocks: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["csc"],
     dtype: npt.DTypeLike | None = ...,
 ) -> csc_matrix[Any, Any]: ...
 @overload
 def vstack(
-    blocks: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    blocks: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["csc"],
     dtype: _DTypeLike[_SCT_co],
 ) -> csc_array[Any, np.dtype[_SCT_co]] | csc_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def vstack(
-    blocks: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    blocks: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["csc"],
     dtype: npt.DTypeLike | None = ...,
 ) -> csc_array[Any, np.dtype[_SCT_co]] | csc_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def vstack(
-    blocks: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    blocks: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["csr"],
     dtype: _DTypeLike[_SCT_co],
 ) -> csr_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def vstack(
-    blocks: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    blocks: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["csr"],
     dtype: npt.DTypeLike | None = ...,
 ) -> csr_matrix[Any, Any]: ...
 @overload
 def vstack(
-    blocks: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    blocks: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["csr"],
     dtype: _DTypeLike[_SCT_co],
 ) -> csr_array[Any, np.dtype[_SCT_co]] | csr_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def vstack(
-    blocks: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    blocks: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["csr"],
     dtype: npt.DTypeLike | None = ...,
 ) -> csr_array[Any, np.dtype[_SCT_co]] | csr_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def vstack(
-    blocks: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    blocks: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["coo"],
     dtype: _DTypeLike[_SCT_co],
 ) -> coo_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def vstack(
-    blocks: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    blocks: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["coo"],
     dtype: npt.DTypeLike | None = ...,
 ) -> coo_matrix[Any, Any]: ...
 @overload
 def vstack(
-    blocks: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    blocks: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["coo"],
     dtype: _DTypeLike[_SCT_co],
 ) -> coo_array[Any, np.dtype[_SCT_co]] | coo_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def vstack(
-    blocks: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    blocks: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["coo"],
     dtype: npt.DTypeLike | None = ...,
 ) -> coo_array[Any, np.dtype[_SCT_co]] | coo_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def vstack(
-    blocks: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    blocks: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["bsr"],
     dtype: _DTypeLike[_SCT_co],
 ) -> bsr_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def vstack(
-    blocks: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    blocks: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["bsr"],
     dtype: npt.DTypeLike | None = ...,
 ) -> bsr_matrix[Any, Any]: ...
 @overload
 def vstack(
-    blocks: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    blocks: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["bsr"],
     dtype: _DTypeLike[_SCT_co],
 ) -> bsr_array[Any, np.dtype[_SCT_co]] | bsr_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def vstack(
-    blocks: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    blocks: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["bsr"],
     dtype: npt.DTypeLike | None = ...,
 ) -> bsr_array[Any, np.dtype[_SCT_co]] | bsr_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def vstack(
-    blocks: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    blocks: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["dia"],
     dtype: _DTypeLike[_SCT_co],
 ) -> dia_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def vstack(
-    blocks: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    blocks: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["dia"],
     dtype: npt.DTypeLike | None = ...,
 ) -> dia_matrix[Any, Any]: ...
 @overload
 def vstack(
-    blocks: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    blocks: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["dia"],
     dtype: _DTypeLike[_SCT_co],
 ) -> dia_array[Any, np.dtype[_SCT_co]] | dia_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def vstack(
-    blocks: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    blocks: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["dia"],
     dtype: npt.DTypeLike | None = ...,
 ) -> dia_array[Any, np.dtype[_SCT_co]] | dia_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def vstack(
-    blocks: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    blocks: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["dok"],
     dtype: _DTypeLike[_SCT_co],
 ) -> dok_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def vstack(
-    blocks: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    blocks: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["dok"],
     dtype: npt.DTypeLike | None = ...,
 ) -> dok_matrix[Any, Any]: ...
 @overload
 def vstack(
-    blocks: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    blocks: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["dok"],
     dtype: _DTypeLike[_SCT_co],
 ) -> dok_array[Any, np.dtype[_SCT_co]] | dok_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def vstack(
-    blocks: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    blocks: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["dok"],
     dtype: npt.DTypeLike | None = ...,
 ) -> dok_array[Any, np.dtype[_SCT_co]] | dok_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def vstack(
-    blocks: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    blocks: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["lil"],
     dtype: _DTypeLike[_SCT_co],
 ) -> lil_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def vstack(
-    blocks: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    blocks: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["lil"],
     dtype: npt.DTypeLike | None = ...,
 ) -> lil_matrix[Any, Any]: ...
 @overload
 def vstack(
-    blocks: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    blocks: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["lil"],
     dtype: _DTypeLike[_SCT_co],
 ) -> lil_array[Any, np.dtype[_SCT_co]] | lil_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def vstack(
-    blocks: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    blocks: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["lil"],
     dtype: npt.DTypeLike | None = ...,
 ) -> lil_array[Any, np.dtype[_SCT_co]] | lil_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def bmat(
     blocks: (
-        Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]]
+        Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]]
     ),
     format: None,
     dtype: _DTypeLike[_SCT_co],
@@ -2474,8 +2474,8 @@ def bmat(
 @overload
 def bmat(
     blocks: (
-        Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]]
+        Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]]
     ),
     format: None = ...,
     *,
@@ -2484,8 +2484,8 @@ def bmat(
 @overload
 def bmat(
     blocks: (
-        Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]]
+        Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]]
     ),
     format: None = ...,
     dtype: npt.DTypeLike | None = ...,
@@ -2493,8 +2493,8 @@ def bmat(
 @overload
 def bmat(
     blocks: (
-        Sequence[SparseArray[Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[SparseArray[Any] | npt.NDArray[Any] | None]]
+        Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]]
     ),
     format: None,
     dtype: _DTypeLike[_SCT_co],
@@ -2502,8 +2502,8 @@ def bmat(
 @overload
 def bmat(
     blocks: (
-        Sequence[SparseArray[Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[SparseArray[Any] | npt.NDArray[Any] | None]]
+        Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]]
     ),
     format: None = ...,
     *,
@@ -2512,8 +2512,8 @@ def bmat(
 @overload
 def bmat(
     blocks: (
-        Sequence[SparseArray[Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[SparseArray[Any] | npt.NDArray[Any] | None]]
+        Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]]
     ),
     format: None = ...,
     dtype: npt.DTypeLike | None = ...,
@@ -2521,8 +2521,8 @@ def bmat(
 @overload
 def bmat(
     blocks: (
-        Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]]
+        Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]]
     ),
     format: Literal["csc"],
     dtype: _DTypeLike[_SCT_co],
@@ -2530,8 +2530,8 @@ def bmat(
 @overload
 def bmat(
     blocks: (
-        Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]]
+        Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]]
     ),
     format: Literal["csc"],
     dtype: npt.DTypeLike | None = ...,
@@ -2539,8 +2539,8 @@ def bmat(
 @overload
 def bmat(
     blocks: (
-        Sequence[SparseArray[Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[SparseArray[Any] | npt.NDArray[Any] | None]]
+        Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]]
     ),
     format: Literal["csc"],
     dtype: _DTypeLike[_SCT_co],
@@ -2548,8 +2548,8 @@ def bmat(
 @overload
 def bmat(
     blocks: (
-        Sequence[SparseArray[Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[SparseArray[Any] | npt.NDArray[Any] | None]]
+        Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]]
     ),
     format: Literal["csc"],
     dtype: npt.DTypeLike | None = ...,
@@ -2557,8 +2557,8 @@ def bmat(
 @overload
 def bmat(
     blocks: (
-        Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]]
+        Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]]
     ),
     format: Literal["csr"],
     dtype: _DTypeLike[_SCT_co],
@@ -2566,8 +2566,8 @@ def bmat(
 @overload
 def bmat(
     blocks: (
-        Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]]
+        Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]]
     ),
     format: Literal["csr"],
     dtype: npt.DTypeLike | None = ...,
@@ -2575,8 +2575,8 @@ def bmat(
 @overload
 def bmat(
     blocks: (
-        Sequence[SparseArray[Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[SparseArray[Any] | npt.NDArray[Any] | None]]
+        Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]]
     ),
     format: Literal["csr"],
     dtype: _DTypeLike[_SCT_co],
@@ -2584,8 +2584,8 @@ def bmat(
 @overload
 def bmat(
     blocks: (
-        Sequence[SparseArray[Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[SparseArray[Any] | npt.NDArray[Any] | None]]
+        Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]]
     ),
     format: Literal["csr"],
     dtype: npt.DTypeLike | None = ...,
@@ -2593,8 +2593,8 @@ def bmat(
 @overload
 def bmat(
     blocks: (
-        Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]]
+        Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]]
     ),
     format: Literal["coo"],
     dtype: _DTypeLike[_SCT_co],
@@ -2602,8 +2602,8 @@ def bmat(
 @overload
 def bmat(
     blocks: (
-        Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]]
+        Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]]
     ),
     format: Literal["coo"],
     dtype: npt.DTypeLike | None = ...,
@@ -2611,8 +2611,8 @@ def bmat(
 @overload
 def bmat(
     blocks: (
-        Sequence[SparseArray[Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[SparseArray[Any] | npt.NDArray[Any] | None]]
+        Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]]
     ),
     format: Literal["coo"],
     dtype: _DTypeLike[_SCT_co],
@@ -2620,8 +2620,8 @@ def bmat(
 @overload
 def bmat(
     blocks: (
-        Sequence[SparseArray[Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[SparseArray[Any] | npt.NDArray[Any] | None]]
+        Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]]
     ),
     format: Literal["coo"],
     dtype: npt.DTypeLike | None = ...,
@@ -2629,8 +2629,8 @@ def bmat(
 @overload
 def bmat(
     blocks: (
-        Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]]
+        Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]]
     ),
     format: Literal["bsr"],
     dtype: _DTypeLike[_SCT_co],
@@ -2638,8 +2638,8 @@ def bmat(
 @overload
 def bmat(
     blocks: (
-        Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]]
+        Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]]
     ),
     format: Literal["bsr"],
     dtype: npt.DTypeLike | None = ...,
@@ -2647,8 +2647,8 @@ def bmat(
 @overload
 def bmat(
     blocks: (
-        Sequence[SparseArray[Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[SparseArray[Any] | npt.NDArray[Any] | None]]
+        Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]]
     ),
     format: Literal["bsr"],
     dtype: _DTypeLike[_SCT_co],
@@ -2656,8 +2656,8 @@ def bmat(
 @overload
 def bmat(
     blocks: (
-        Sequence[SparseArray[Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[SparseArray[Any] | npt.NDArray[Any] | None]]
+        Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]]
     ),
     format: Literal["bsr"],
     dtype: npt.DTypeLike | None = ...,
@@ -2665,8 +2665,8 @@ def bmat(
 @overload
 def bmat(
     blocks: (
-        Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]]
+        Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]]
     ),
     format: Literal["dia"],
     dtype: _DTypeLike[_SCT_co],
@@ -2674,8 +2674,8 @@ def bmat(
 @overload
 def bmat(
     blocks: (
-        Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]]
+        Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]]
     ),
     format: Literal["dia"],
     dtype: npt.DTypeLike | None = ...,
@@ -2683,8 +2683,8 @@ def bmat(
 @overload
 def bmat(
     blocks: (
-        Sequence[SparseArray[Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[SparseArray[Any] | npt.NDArray[Any] | None]]
+        Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]]
     ),
     format: Literal["dia"],
     dtype: _DTypeLike[_SCT_co],
@@ -2692,8 +2692,8 @@ def bmat(
 @overload
 def bmat(
     blocks: (
-        Sequence[SparseArray[Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[SparseArray[Any] | npt.NDArray[Any] | None]]
+        Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]]
     ),
     format: Literal["dia"],
     dtype: npt.DTypeLike | None = ...,
@@ -2701,8 +2701,8 @@ def bmat(
 @overload
 def bmat(
     blocks: (
-        Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]]
+        Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]]
     ),
     format: Literal["dok"],
     dtype: _DTypeLike[_SCT_co],
@@ -2710,8 +2710,8 @@ def bmat(
 @overload
 def bmat(
     blocks: (
-        Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]]
+        Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]]
     ),
     format: Literal["dok"],
     dtype: npt.DTypeLike | None = ...,
@@ -2719,8 +2719,8 @@ def bmat(
 @overload
 def bmat(
     blocks: (
-        Sequence[SparseArray[Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[SparseArray[Any] | npt.NDArray[Any] | None]]
+        Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]]
     ),
     format: Literal["dok"],
     dtype: _DTypeLike[_SCT_co],
@@ -2728,8 +2728,8 @@ def bmat(
 @overload
 def bmat(
     blocks: (
-        Sequence[SparseArray[Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[SparseArray[Any] | npt.NDArray[Any] | None]]
+        Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]]
     ),
     format: Literal["dok"],
     dtype: npt.DTypeLike | None = ...,
@@ -2737,8 +2737,8 @@ def bmat(
 @overload
 def bmat(
     blocks: (
-        Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]]
+        Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]]
     ),
     format: Literal["lil"],
     dtype: _DTypeLike[_SCT_co],
@@ -2746,8 +2746,8 @@ def bmat(
 @overload
 def bmat(
     blocks: (
-        Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]]
+        Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]]
     ),
     format: Literal["lil"],
     dtype: npt.DTypeLike | None = ...,
@@ -2755,8 +2755,8 @@ def bmat(
 @overload
 def bmat(
     blocks: (
-        Sequence[SparseArray[Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[SparseArray[Any] | npt.NDArray[Any] | None]]
+        Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]]
     ),
     format: Literal["lil"],
     dtype: _DTypeLike[_SCT_co],
@@ -2764,8 +2764,8 @@ def bmat(
 @overload
 def bmat(
     blocks: (
-        Sequence[SparseArray[Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[SparseArray[Any] | npt.NDArray[Any] | None]]
+        Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]]
     ),
     format: Literal["lil"],
     dtype: npt.DTypeLike | None = ...,
@@ -2773,8 +2773,8 @@ def bmat(
 @overload
 def block_array(
     blocks: (
-        Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]]
+        Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]]
     ),
     *,
     format: None = ...,
@@ -2783,8 +2783,8 @@ def block_array(
 @overload
 def block_array(
     blocks: (
-        Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]]
+        Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]]
     ),
     *,
     format: None = ...,
@@ -2793,8 +2793,8 @@ def block_array(
 @overload
 def block_array(
     blocks: (
-        Sequence[SparseArray[Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[SparseArray[Any] | npt.NDArray[Any] | None]]
+        Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]]
     ),
     *,
     format: None = ...,
@@ -2803,8 +2803,8 @@ def block_array(
 @overload
 def block_array(
     blocks: (
-        Sequence[SparseArray[Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[SparseArray[Any] | npt.NDArray[Any] | None]]
+        Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]]
     ),
     *,
     format: None = ...,
@@ -2813,8 +2813,8 @@ def block_array(
 @overload
 def block_array(
     blocks: (
-        Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]]
+        Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]]
     ),
     *,
     format: Literal["csc"],
@@ -2823,8 +2823,8 @@ def block_array(
 @overload
 def block_array(
     blocks: (
-        Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]]
+        Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]]
     ),
     *,
     format: Literal["csc"],
@@ -2833,8 +2833,8 @@ def block_array(
 @overload
 def block_array(
     blocks: (
-        Sequence[SparseArray[Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[SparseArray[Any] | npt.NDArray[Any] | None]]
+        Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]]
     ),
     *,
     format: Literal["csc"],
@@ -2843,8 +2843,8 @@ def block_array(
 @overload
 def block_array(
     blocks: (
-        Sequence[SparseArray[Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[SparseArray[Any] | npt.NDArray[Any] | None]]
+        Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]]
     ),
     *,
     format: Literal["csc"],
@@ -2853,8 +2853,8 @@ def block_array(
 @overload
 def block_array(
     blocks: (
-        Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]]
+        Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]]
     ),
     *,
     format: Literal["csr"],
@@ -2863,8 +2863,8 @@ def block_array(
 @overload
 def block_array(
     blocks: (
-        Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]]
+        Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]]
     ),
     *,
     format: Literal["csr"],
@@ -2873,8 +2873,8 @@ def block_array(
 @overload
 def block_array(
     blocks: (
-        Sequence[SparseArray[Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[SparseArray[Any] | npt.NDArray[Any] | None]]
+        Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]]
     ),
     *,
     format: Literal["csr"],
@@ -2883,8 +2883,8 @@ def block_array(
 @overload
 def block_array(
     blocks: (
-        Sequence[SparseArray[Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[SparseArray[Any] | npt.NDArray[Any] | None]]
+        Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]]
     ),
     *,
     format: Literal["csr"],
@@ -2893,8 +2893,8 @@ def block_array(
 @overload
 def block_array(
     blocks: (
-        Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]]
+        Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]]
     ),
     *,
     format: Literal["coo"],
@@ -2903,8 +2903,8 @@ def block_array(
 @overload
 def block_array(
     blocks: (
-        Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]]
+        Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]]
     ),
     *,
     format: Literal["coo"],
@@ -2913,8 +2913,8 @@ def block_array(
 @overload
 def block_array(
     blocks: (
-        Sequence[SparseArray[Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[SparseArray[Any] | npt.NDArray[Any] | None]]
+        Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]]
     ),
     *,
     format: Literal["coo"],
@@ -2923,8 +2923,8 @@ def block_array(
 @overload
 def block_array(
     blocks: (
-        Sequence[SparseArray[Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[SparseArray[Any] | npt.NDArray[Any] | None]]
+        Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]]
     ),
     *,
     format: Literal["coo"],
@@ -2933,8 +2933,8 @@ def block_array(
 @overload
 def block_array(
     blocks: (
-        Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]]
+        Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]]
     ),
     *,
     format: Literal["bsr"],
@@ -2943,8 +2943,8 @@ def block_array(
 @overload
 def block_array(
     blocks: (
-        Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]]
+        Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]]
     ),
     *,
     format: Literal["bsr"],
@@ -2953,8 +2953,8 @@ def block_array(
 @overload
 def block_array(
     blocks: (
-        Sequence[SparseArray[Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[SparseArray[Any] | npt.NDArray[Any] | None]]
+        Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]]
     ),
     *,
     format: Literal["bsr"],
@@ -2963,8 +2963,8 @@ def block_array(
 @overload
 def block_array(
     blocks: (
-        Sequence[SparseArray[Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[SparseArray[Any] | npt.NDArray[Any] | None]]
+        Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]]
     ),
     *,
     format: Literal["bsr"],
@@ -2973,8 +2973,8 @@ def block_array(
 @overload
 def block_array(
     blocks: (
-        Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]]
+        Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]]
     ),
     *,
     format: Literal["dia"],
@@ -2983,8 +2983,8 @@ def block_array(
 @overload
 def block_array(
     blocks: (
-        Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]]
+        Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]]
     ),
     *,
     format: Literal["dia"],
@@ -2993,8 +2993,8 @@ def block_array(
 @overload
 def block_array(
     blocks: (
-        Sequence[SparseArray[Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[SparseArray[Any] | npt.NDArray[Any] | None]]
+        Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]]
     ),
     *,
     format: Literal["dia"],
@@ -3003,8 +3003,8 @@ def block_array(
 @overload
 def block_array(
     blocks: (
-        Sequence[SparseArray[Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[SparseArray[Any] | npt.NDArray[Any] | None]]
+        Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]]
     ),
     *,
     format: Literal["dia"],
@@ -3013,8 +3013,8 @@ def block_array(
 @overload
 def block_array(
     blocks: (
-        Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]]
+        Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]]
     ),
     *,
     format: Literal["dok"],
@@ -3023,8 +3023,8 @@ def block_array(
 @overload
 def block_array(
     blocks: (
-        Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]]
+        Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]]
     ),
     *,
     format: Literal["dok"],
@@ -3033,8 +3033,8 @@ def block_array(
 @overload
 def block_array(
     blocks: (
-        Sequence[SparseArray[Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[SparseArray[Any] | npt.NDArray[Any] | None]]
+        Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]]
     ),
     *,
     format: Literal["dok"],
@@ -3043,8 +3043,8 @@ def block_array(
 @overload
 def block_array(
     blocks: (
-        Sequence[SparseArray[Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[SparseArray[Any] | npt.NDArray[Any] | None]]
+        Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]]
     ),
     *,
     format: Literal["dok"],
@@ -3053,8 +3053,8 @@ def block_array(
 @overload
 def block_array(
     blocks: (
-        Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]]
+        Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]]
     ),
     *,
     format: Literal["lil"],
@@ -3063,8 +3063,8 @@ def block_array(
 @overload
 def block_array(
     blocks: (
-        Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]]
+        Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]]
     ),
     *,
     format: Literal["lil"],
@@ -3073,8 +3073,8 @@ def block_array(
 @overload
 def block_array(
     blocks: (
-        Sequence[SparseArray[Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[SparseArray[Any] | npt.NDArray[Any] | None]]
+        Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]]
     ),
     *,
     format: Literal["lil"],
@@ -3083,8 +3083,8 @@ def block_array(
 @overload
 def block_array(
     blocks: (
-        Sequence[SparseArray[Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[SparseArray[Any] | npt.NDArray[Any] | None]]
+        Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]]
     ),
     *,
     format: Literal["lil"],
@@ -3092,207 +3092,207 @@ def block_array(
 ) -> lil_array[Any, np.dtype[_SCT_co]] | lil_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def block_diag(
-    mats: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    mats: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: None,
     dtype: _DTypeLike[_SCT_co],
 ) -> spmatrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def block_diag(
-    mats: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    mats: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: None = ...,
     *,
     dtype: _DTypeLike[_SCT_co],
 ) -> spmatrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def block_diag(
-    mats: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    mats: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: None = ...,
     dtype: npt.DTypeLike | None = ...,
 ) -> spmatrix[Any, Any]: ...
 @overload
 def block_diag(
-    mats: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    mats: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: None,
     dtype: _DTypeLike[_SCT_co],
 ) -> SparseArray[_SCT_co]: ...
 @overload
 def block_diag(
-    mats: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    mats: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: None = ...,
     *,
     dtype: np.dtype[_SCT_co],
 ) -> SparseArray[_SCT_co]: ...
 @overload
 def block_diag(
-    mats: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    mats: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: None = ...,
     dtype: npt.DTypeLike | None = ...,
 ) -> SparseArray[Any]: ...
 @overload
 def block_diag(
-    mats: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    mats: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["csc"],
     dtype: _DTypeLike[_SCT_co],
 ) -> csc_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def block_diag(
-    mats: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    mats: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["csc"],
     dtype: npt.DTypeLike | None = ...,
 ) -> csc_matrix[Any, Any]: ...
 @overload
 def block_diag(
-    mats: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    mats: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["csc"],
     dtype: _DTypeLike[_SCT_co],
 ) -> csc_array[Any, np.dtype[_SCT_co]] | csc_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def block_diag(
-    mats: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    mats: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["csc"],
     dtype: npt.DTypeLike | None = ...,
 ) -> csc_array[Any, np.dtype[_SCT_co]] | csc_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def block_diag(
-    mats: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    mats: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["csr"],
     dtype: _DTypeLike[_SCT_co],
 ) -> csr_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def block_diag(
-    mats: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    mats: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["csr"],
     dtype: npt.DTypeLike | None = ...,
 ) -> csr_matrix[Any, Any]: ...
 @overload
 def block_diag(
-    mats: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    mats: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["csr"],
     dtype: _DTypeLike[_SCT_co],
 ) -> csr_array[Any, np.dtype[_SCT_co]] | csr_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def block_diag(
-    mats: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    mats: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["csr"],
     dtype: npt.DTypeLike | None = ...,
 ) -> csr_array[Any, np.dtype[_SCT_co]] | csr_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def block_diag(
-    mats: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    mats: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["coo"],
     dtype: _DTypeLike[_SCT_co],
 ) -> coo_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def block_diag(
-    mats: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    mats: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["coo"],
     dtype: npt.DTypeLike | None = ...,
 ) -> coo_matrix[Any, Any]: ...
 @overload
 def block_diag(
-    mats: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    mats: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["coo"],
     dtype: _DTypeLike[_SCT_co],
 ) -> coo_array[Any, np.dtype[_SCT_co]] | coo_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def block_diag(
-    mats: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    mats: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["coo"],
     dtype: npt.DTypeLike | None = ...,
 ) -> coo_array[Any, np.dtype[_SCT_co]] | coo_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def block_diag(
-    mats: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    mats: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["bsr"],
     dtype: _DTypeLike[_SCT_co],
 ) -> bsr_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def block_diag(
-    mats: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    mats: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["bsr"],
     dtype: npt.DTypeLike | None = ...,
 ) -> bsr_matrix[Any, Any]: ...
 @overload
 def block_diag(
-    mats: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    mats: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["bsr"],
     dtype: _DTypeLike[_SCT_co],
 ) -> bsr_array[Any, np.dtype[_SCT_co]] | bsr_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def block_diag(
-    mats: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    mats: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["bsr"],
     dtype: npt.DTypeLike | None = ...,
 ) -> bsr_array[Any, np.dtype[_SCT_co]] | bsr_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def block_diag(
-    mats: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    mats: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["dia"],
     dtype: _DTypeLike[_SCT_co],
 ) -> dia_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def block_diag(
-    mats: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    mats: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["dia"],
     dtype: npt.DTypeLike | None = ...,
 ) -> dia_matrix[Any, Any]: ...
 @overload
 def block_diag(
-    mats: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    mats: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["dia"],
     dtype: _DTypeLike[_SCT_co],
 ) -> dia_array[Any, np.dtype[_SCT_co]] | dia_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def block_diag(
-    mats: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    mats: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["dia"],
     dtype: npt.DTypeLike | None = ...,
 ) -> dia_array[Any, np.dtype[_SCT_co]] | dia_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def block_diag(
-    mats: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    mats: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["dok"],
     dtype: _DTypeLike[_SCT_co],
 ) -> dok_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def block_diag(
-    mats: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    mats: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["dok"],
     dtype: npt.DTypeLike | None = ...,
 ) -> dok_matrix[Any, Any]: ...
 @overload
 def block_diag(
-    mats: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    mats: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["dok"],
     dtype: _DTypeLike[_SCT_co],
 ) -> dok_array[Any, np.dtype[_SCT_co]] | dok_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def block_diag(
-    mats: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    mats: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["dok"],
     dtype: npt.DTypeLike | None = ...,
 ) -> dok_array[Any, np.dtype[_SCT_co]] | dok_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def block_diag(
-    mats: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    mats: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["lil"],
     dtype: _DTypeLike[_SCT_co],
 ) -> lil_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def block_diag(
-    mats: Sequence[spmatrix[Any, Any] | npt.NDArray[Any]],
+    mats: Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any]],
     format: Literal["lil"],
     dtype: npt.DTypeLike | None = ...,
 ) -> lil_matrix[Any, Any]: ...
 @overload
 def block_diag(
-    mats: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    mats: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["lil"],
     dtype: _DTypeLike[_SCT_co],
 ) -> lil_array[Any, np.dtype[_SCT_co]] | lil_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def block_diag(
-    mats: Sequence[SparseArray[Any] | npt.NDArray[Any]],
+    mats: Sequence[SparseArray[Any] | np.ndarray[Any, Any]],
     format: Literal["lil"],
     dtype: npt.DTypeLike | None = ...,
 ) -> lil_array[Any, np.dtype[_SCT_co]] | lil_matrix[Any, np.dtype[_SCT_co]]: ...

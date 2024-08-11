@@ -1,8 +1,8 @@
 @overload
 def block_array(
     blocks: (
-        Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]]
+        Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]]
     ),
     *,
     format: Literal["{_Spec_Format}"],
@@ -11,8 +11,8 @@ def block_array(
 @overload
 def block_array(
     blocks: (
-        Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]]
+        Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]]
     ),
     *,
     format: Literal["{_Spec_Format}"],
@@ -21,8 +21,8 @@ def block_array(
 @overload
 def block_array(
     blocks: (
-        Sequence[SparseArray[Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[SparseArray[Any] | npt.NDArray[Any] | None]]
+        Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]]
     ),
     *,
     format: Literal["{_Spec_Format}"],
@@ -31,8 +31,8 @@ def block_array(
 @overload
 def block_array(
     blocks: (
-        Sequence[SparseArray[Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[SparseArray[Any] | npt.NDArray[Any] | None]]
+        Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]]
     ),
     *,
     format: Literal["{_Spec_Format}"],

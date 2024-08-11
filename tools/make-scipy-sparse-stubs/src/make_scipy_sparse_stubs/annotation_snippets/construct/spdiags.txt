@@ -1,6 +1,6 @@
 @overload
 def spdiags(
-    data: npt.NDArray[_SCT_co],
+    data: np.ndarray[Any, np.dtype[_SCT_co]],
     diags: _ArrayLike1DIndex | SupportsIndex,
     m: None | tuple[SupportsIndex, SupportsIndex],
     n: None,
@@ -8,7 +8,7 @@ def spdiags(
 ) -> {_Spec_Format}_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def spdiags(
-    data: npt.NDArray[_SCT_co],
+    data: np.ndarray[Any, np.dtype[_SCT_co]],
     diags: _ArrayLike1DIndex | SupportsIndex,
     m: None | tuple[SupportsIndex, SupportsIndex] = ...,
     n: None = ...,

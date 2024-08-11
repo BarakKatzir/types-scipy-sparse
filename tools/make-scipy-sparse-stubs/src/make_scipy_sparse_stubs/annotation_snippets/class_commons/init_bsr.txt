@@ -67,7 +67,10 @@ def __init__(
 @overload
 def __init__(
     self: {_Self_Base}[Any, np.dtype[_SCT_co]],
-    arg1: tuple[npt.NDArray[_SCT_co], tuple[_ArrayLike1DIndex, _ArrayLike1DIndex]],
+    arg1: tuple[
+        np.ndarray[Any, np.dtype[_SCT_co]],
+        tuple[_ArrayLike1DIndex, _ArrayLike1DIndex],
+    ],
     shape: _ShapeLike | None = ...,
     dtype: None = ...,
     copy: bool = ...,
@@ -105,7 +108,11 @@ def __init__(
 @overload
 def __init__(
     self: {_Self_Base}[Any, np.dtype[_SCT_co]],
-    arg1: tuple[npt.NDArray[_SCT_co], _ArrayLike1DIndex, _ArrayLike1DIndex],
+    arg1: tuple[
+        np.ndarray[Any, np.dtype[_SCT_co]],
+        _ArrayLike1DIndex,
+        _ArrayLike1DIndex,
+    ],
     shape: _ShapeLike | None = ...,
     dtype: None = ...,
     copy: bool = ...,
@@ -143,7 +150,7 @@ def __init__(
 @overload
 def __init__(
     self: {_Self_Base}[Any, np.dtype[_SCT_co]],
-    arg1: npt.NDArray[_SCT_co],
+    arg1: np.ndarray[Any, np.dtype[_SCT_co]],
     *,
     dtype: None = ...,
     blocksize: tuple[SupportsIndex, SupportsIndex] | None = ...,

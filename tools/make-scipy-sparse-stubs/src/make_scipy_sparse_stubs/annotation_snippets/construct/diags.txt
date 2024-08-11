@@ -1,6 +1,6 @@
 @overload
 def diags(
-    diagonals: npt.NDArray[_SCT_co],
+    diagonals: np.ndarray[Any, np.dtype[_SCT_co]],
     offsets: _ArrayLike1DIndex | SupportsIndex = ...,
     shape: None | tuple[SupportsIndex, SupportsIndex] = ...,
     *,
@@ -9,7 +9,7 @@ def diags(
 ) -> {_Spec_Format}_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def diags(
-    diagonals: npt.NDArray[_SCT_co],
+    diagonals: np.ndarray[Any, np.dtype[_SCT_co]],
     offsets: _ArrayLike1DIndex | SupportsIndex,
     shape: None | tuple[SupportsIndex, SupportsIndex],
     format: Literal["{_Spec_Format}"],

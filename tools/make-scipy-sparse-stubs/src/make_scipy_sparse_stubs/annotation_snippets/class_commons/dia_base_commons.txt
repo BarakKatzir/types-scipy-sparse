@@ -1,7 +1,7 @@
 ###########################################################################
 # common methods from _dia_base
 ###########################################################################
-offsets: npt.NDArray[np.int_]
+offsets: np.ndarray[Any, np.dtype[np.int_]]
 data: np.ndarray[Any, _DType_co]
 @property
 def format(self) -> Literal["dia"]: ...

@@ -1,8 +1,8 @@
 @overload
 def bmat(
     blocks: (
-        Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]]
+        Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]]
     ),
     format: Literal["{_Spec_Format}"],
     dtype: _DTypeLike[_SCT_co],
@@ -10,8 +10,8 @@ def bmat(
 @overload
 def bmat(
     blocks: (
-        Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[spmatrix[Any, Any] | npt.NDArray[Any] | None]]
+        Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[spmatrix[Any, Any] | np.ndarray[Any, Any] | None]]
     ),
     format: Literal["{_Spec_Format}"],
     dtype: npt.DTypeLike | None = ...,
@@ -19,8 +19,8 @@ def bmat(
 @overload
 def bmat(
     blocks: (
-        Sequence[SparseArray[Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[SparseArray[Any] | npt.NDArray[Any] | None]]
+        Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]]
     ),
     format: Literal["{_Spec_Format}"],
     dtype: _DTypeLike[_SCT_co],
@@ -28,8 +28,8 @@ def bmat(
 @overload
 def bmat(
     blocks: (
-        Sequence[SparseArray[Any] | npt.NDArray[Any] | None]
-        | Sequence[Sequence[SparseArray[Any] | npt.NDArray[Any] | None]]
+        Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]
+        | Sequence[Sequence[SparseArray[Any] | np.ndarray[Any, Any] | None]]
     ),
     format: Literal["{_Spec_Format}"],
     dtype: npt.DTypeLike | None = ...,

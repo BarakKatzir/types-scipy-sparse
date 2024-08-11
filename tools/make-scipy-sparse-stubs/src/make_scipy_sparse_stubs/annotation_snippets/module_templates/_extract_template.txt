@@ -18,10 +18,18 @@ __all__ = ["find", "tril", "triu"]
 
 @overload
 def find(
-    A: SparseArray[_SCT] | npt.NDArray[_SCT],
-) -> tuple[npt.NDArray[np.int_], npt.NDArray[np.int_], npt.NDArray[_SCT]]: ...
+    A: SparseArray[_SCT] | np.ndarray[Any, np.dtype[_SCT]],
+) -> tuple[
+    np.ndarray[Any, np.dtype[np.int_]],
+    np.ndarray[Any, np.dtype[np.int_]],
+    np.ndarray[Any, np.dtype[_SCT]],
+]: ...
 @overload
 def find(
     A: SparseArray[Any] | npt.ArrayLike,
-) -> tuple[npt.NDArray[np.int_], npt.NDArray[np.int_], npt.NDArray[Any]]: ...
+) -> tuple[
+    np.ndarray[Any, np.dtype[np.int_]],
+    np.ndarray[Any, np.dtype[np.int_]],
+    np.ndarray[Any, Any],
+]: ...
 {body}

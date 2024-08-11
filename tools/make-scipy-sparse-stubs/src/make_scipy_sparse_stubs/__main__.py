@@ -344,7 +344,7 @@ def _make_func(func_name: str, module: str) -> str:
                 txt += _get_func_snippet(func_name, module).format(
                     _Spec_Format=fmt, _Opt_None=opt_none
                 )
-        case "random" | "rand":
+        case "random" | "rand" | "tril" | "triu":
             txt += _get_func_snippet(func_name + "_default", module)
             # "coo" is included in default case
             for fmt in ["csc", "csr", "bsr", "dia", "dok", "lil"]:
@@ -366,12 +366,6 @@ def _make_func(func_name: str, module: str) -> str:
                 sparray_overloads=array_ol,
                 spmatrix_overloads=matrix_ol,
             )
-        # TODO: make tril / triu compatible with random / rand:
-        case "tril" | "triu":
-            # "coo" is included in default case
-            for fmt in ["csc", "csr", "bsr", "dia", "dok", "lil"]:
-                txt += _get_func_snippet(func_name, module).format(_Spec_Format=fmt)
-
         case _:
             raise ValueError(f"Invalid function name {func_name}")
     return txt
@@ -395,10 +389,10 @@ def make__extract() -> str:
         ANNOTATION_SNIPPETS / "module_templates" / "_extract_template.txt"
     ).open() as f:
         module = f.read()
-    overloads = {}
+    body = ""
     for func_name in EXTRACT_FUNCS:
-        overloads[func_name] = _make_func(func_name, "extract")
-    return module.format(**overloads)[:-1]
+        body += _make_func(func_name, "extract")
+    return module.format(body=body)[:-1]
 
 
 GENERATING_FUNCS = {

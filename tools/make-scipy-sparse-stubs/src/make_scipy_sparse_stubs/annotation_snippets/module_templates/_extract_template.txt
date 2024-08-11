@@ -24,40 +24,4 @@ def find(
 def find(
     A: SparseArray[Any] | npt.ArrayLike,
 ) -> tuple[npt.NDArray[np.int_], npt.NDArray[np.int_], npt.NDArray[Any]]: ...
-@overload
-def tril(
-    A: sparray[Any, np.dtype[_SCT]],
-    k: SupportsIndex = ...,
-    format: Literal["coo"] | None = ...,
-) -> coo_array[Any, np.dtype[_SCT]]: ...
-@overload
-def tril(
-    A: spmatrix[Any, np.dtype[_SCT]] | npt.NDArray[_SCT],
-    k: SupportsIndex = ...,
-    format: Literal["coo"] | None = ...,
-) -> coo_matrix[Any, np.dtype[_SCT]]: ...
-@overload
-def tril(
-    A: npt.ArrayLike,
-    k: SupportsIndex = ...,
-    format: Literal["coo"] | None = ...,
-) -> coo_matrix[Any, Any]: ...
-{tril}@overload
-def triu(
-    A: sparray[Any, np.dtype[_SCT]],
-    k: SupportsIndex = ...,
-    format: Literal["coo"] | None = ...,
-) -> coo_array[Any, np.dtype[_SCT]]: ...
-@overload
-def triu(
-    A: spmatrix[Any, np.dtype[_SCT]] | npt.NDArray[_SCT],
-    k: SupportsIndex = ...,
-    format: Literal["coo"] | None = ...,
-) -> coo_matrix[Any, np.dtype[_SCT]]: ...
-@overload
-def triu(
-    A: npt.ArrayLike,
-    k: SupportsIndex = ...,
-    format: Literal["coo"] | None = ...,
-) -> coo_matrix[Any, Any]: ...
-{triu}
+{body}

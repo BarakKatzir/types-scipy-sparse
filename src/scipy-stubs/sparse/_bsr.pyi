@@ -526,7 +526,13 @@ class bsr_array(sparray[_ShapeAnno, _DType_co], IndexMixin):
     ###########################################################################
     @property
     def format(self) -> Literal["bsr"]: ...
-
+    @property
+    def blocksize(self) -> tuple[int, ...]: ...
+    # These are not yet implemented:
+    def __getitem__(self, key: Never) -> NoReturn: ...  # type: ignore[override]
+    def __setitem__(  # type: ignore[override]
+        self, key: Never, val: Any
+    ) -> NoReturn: ...
     # input is sparse array/matrix
     @overload
     def __init__(
@@ -579,7 +585,7 @@ class bsr_array(sparray[_ShapeAnno, _DType_co], IndexMixin):
     @overload
     def __init__(
         self: bsr_array[Any, np.dtype[_SCT_co]],
-        arg1: tuple[SupportsIndex] | tuple[SupportsIndex, SupportsIndex],
+        arg1: tuple[SupportsIndex, SupportsIndex],
         *,
         dtype: _DTypeLike[_SCT_co],
         blocksize: tuple[SupportsIndex, SupportsIndex] | None = ...,
@@ -587,7 +593,7 @@ class bsr_array(sparray[_ShapeAnno, _DType_co], IndexMixin):
     @overload
     def __init__(
         self,
-        arg1: tuple[SupportsIndex] | tuple[SupportsIndex, SupportsIndex],
+        arg1: tuple[SupportsIndex, SupportsIndex],
         *,
         dtype: npt.DTypeLike | None = ...,
         blocksize: tuple[SupportsIndex, SupportsIndex] | None = ...,
@@ -693,13 +699,6 @@ class bsr_array(sparray[_ShapeAnno, _DType_co], IndexMixin):
         dtype: npt.DTypeLike | None = ...,
         blocksize: tuple[SupportsIndex, SupportsIndex] | None = ...,
     ) -> None: ...
-    @property
-    def blocksize(self) -> tuple[int, ...]: ...
-    # These are not yet implemented:
-    def __getitem__(self, key: Never) -> NoReturn: ...  # type: ignore[override]
-    def __setitem__(  # type: ignore[override]
-        self, key: Never, val: Any
-    ) -> NoReturn: ...
     ###########################################################################
     # common methods/attributes from _cs_matrix
     ###########################################################################
@@ -1295,7 +1294,13 @@ class bsr_matrix(spmatrix[_ShapeAnno, _DType_co], IndexMixin):
     ###########################################################################
     @property
     def format(self) -> Literal["bsr"]: ...
-
+    @property
+    def blocksize(self) -> tuple[int, ...]: ...
+    # These are not yet implemented:
+    def __getitem__(self, key: Never) -> NoReturn: ...  # type: ignore[override]
+    def __setitem__(  # type: ignore[override]
+        self, key: Never, val: Any
+    ) -> NoReturn: ...
     # input is sparse array/matrix
     @overload
     def __init__(
@@ -1348,7 +1353,7 @@ class bsr_matrix(spmatrix[_ShapeAnno, _DType_co], IndexMixin):
     @overload
     def __init__(
         self: bsr_matrix[Any, np.dtype[_SCT_co]],
-        arg1: tuple[SupportsIndex] | tuple[SupportsIndex, SupportsIndex],
+        arg1: tuple[SupportsIndex, SupportsIndex],
         *,
         dtype: _DTypeLike[_SCT_co],
         blocksize: tuple[SupportsIndex, SupportsIndex] | None = ...,
@@ -1356,7 +1361,7 @@ class bsr_matrix(spmatrix[_ShapeAnno, _DType_co], IndexMixin):
     @overload
     def __init__(
         self,
-        arg1: tuple[SupportsIndex] | tuple[SupportsIndex, SupportsIndex],
+        arg1: tuple[SupportsIndex, SupportsIndex],
         *,
         dtype: npt.DTypeLike | None = ...,
         blocksize: tuple[SupportsIndex, SupportsIndex] | None = ...,
@@ -1462,13 +1467,6 @@ class bsr_matrix(spmatrix[_ShapeAnno, _DType_co], IndexMixin):
         dtype: npt.DTypeLike | None = ...,
         blocksize: tuple[SupportsIndex, SupportsIndex] | None = ...,
     ) -> None: ...
-    @property
-    def blocksize(self) -> tuple[int, ...]: ...
-    # These are not yet implemented:
-    def __getitem__(self, key: Never) -> NoReturn: ...  # type: ignore[override]
-    def __setitem__(  # type: ignore[override]
-        self, key: Never, val: Any
-    ) -> NoReturn: ...
     ###########################################################################
     # common methods/attributes from _cs_matrix
     ###########################################################################

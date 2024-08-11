@@ -170,7 +170,8 @@ def _get_bsr_body(tp: Literal["array", "matrix"]) -> str:
     commons = (
         "spbase_commons",
         "transpose",
-        "bsr_base_commons",  # cs_matrix init overwritten to add blocksize arg
+        "bsr_base_commons",
+        "init_bsr",  # cs_matrix init overwritten to add blocksize arg
         "cs_matrix_commons",
         "data_matrix_commons",
         "minmax_mixin_commons",

@@ -341,6 +341,7 @@ class coo_array(sparray[_ShapeAnno, _DType_co]):
         dtype: npt.DTypeLike | None,
         out: _ArrayType,
     ) -> _ArrayType: ...
+    # TODO: is the following comment about copy true?
     # In asformat, copy=False is not Type annotated, though is valid runtime value.
     # This is because the dynamic type change is not compatible with static type
     # checker.
@@ -384,6 +385,7 @@ class coo_array(sparray[_ShapeAnno, _DType_co]):
         format: _Formats | None,
         copy: Literal[True],
     ) -> sparray[_ShapeAnno, _DType_co]: ...
+    # TODO: is the following comment about copy true?
     # In reshape, copy=False annotating is problematic, but I decided to copy from
     # numpy where it is permitted to mutate the shape without changing the ShapeType
     # typevar.
@@ -506,16 +508,6 @@ class coo_array(sparray[_ShapeAnno, _DType_co]):
     def __itruediv__(
         self, other: npt.NDArray[Any] | SparseArray[Any]
     ) -> npt.NDArray[Any] | SparseArray[Any]: ...
-
-    # TODO: the `T` and `transpose` methods need refinement.csc -> csr anything else?
-    # Despite T and transpose (if copy=False) by default mutate the shape of self, and
-    # can cause incompatibility with the ShapeType variable, I followed numpy's
-    # approach and allowed this.
-    @property
-    def T(self) -> sparray[Any, _DType_co]: ...
-    def transpose(
-        self, axes: None = ..., copy: bool = ...
-    ) -> sparray[Any, _DType_co]: ...
     # TODO: the type annotations of multiply, maximum, minimum and dot can be refined by
     # defining them per-final sparse class, but for now I leave them quite general
     def multiply(self, other: npt.ArrayLike | SparseArray[Any]) -> SparseArray[Any]: ...
@@ -524,6 +516,11 @@ class coo_array(sparray[_ShapeAnno, _DType_co]):
     def dot(
         self, other: npt.ArrayLike | SparseArray[Any]
     ) -> npt.NDArray[Any] | SparseArray[Any]: ...
+    @property
+    def T(self) -> coo_array[Any, _DType_co]: ...
+    def transpose(
+        self, axes: None = ..., copy: bool = ...
+    ) -> coo_array[Any, _DType_co]: ...
     ###########################################################################
     # common methods from _coo_base
     ###########################################################################
@@ -532,7 +529,16 @@ class coo_array(sparray[_ShapeAnno, _DType_co]):
     has_canonical_format: bool
     @property
     def format(self) -> Literal["coo"]: ...
-
+    @property
+    def row(self) -> npt.NDArray[np.int_]: ...
+    @row.setter
+    def row(self, new_row: npt.ArrayLike) -> None: ...
+    @property
+    def col(self) -> npt.NDArray[np.int_]: ...
+    @col.setter
+    def col(self, new_row: npt.ArrayLike) -> None: ...
+    def sum_duplicates(self) -> None: ...
+    def eliminate_zeros(self) -> None: ...
     # input is sparse array/matrix
     @overload
     def __init__(
@@ -545,7 +551,7 @@ class coo_array(sparray[_ShapeAnno, _DType_co]):
     @overload
     def __init__(
         self: coo_array[Any, np.dtype[_SCT_co]],
-        arg1: sparray[Any, Any] | spmatrix[Any, Any],
+        arg1: SparseArray[Any],
         shape: _ShapeLike | None = ...,
         *,
         dtype: _DTypeLike[_SCT_co],
@@ -554,7 +560,7 @@ class coo_array(sparray[_ShapeAnno, _DType_co]):
     @overload
     def __init__(
         self: coo_array[Any, np.dtype[_SCT_co]],
-        arg1: sparray[Any, Any] | spmatrix[Any, Any],
+        arg1: SparseArray[Any],
         shape: _ShapeLike | None,
         dtype: _DTypeLike[_SCT_co],
         copy: bool = ...,
@@ -562,7 +568,7 @@ class coo_array(sparray[_ShapeAnno, _DType_co]):
     @overload
     def __init__(
         self,
-        arg1: sparray[Any, Any] | spmatrix[Any, Any],
+        arg1: SparseArray[Any],
         shape: _ShapeLike | None = ...,
         *,
         dtype: npt.DTypeLike,
@@ -571,7 +577,7 @@ class coo_array(sparray[_ShapeAnno, _DType_co]):
     @overload
     def __init__(
         self,
-        arg1: sparray[Any, Any] | spmatrix[Any, Any],
+        arg1: SparseArray[Any],
         shape: _ShapeLike | None,
         dtype: npt.DTypeLike,
         copy: bool = ...,
@@ -592,11 +598,29 @@ class coo_array(sparray[_ShapeAnno, _DType_co]):
         dtype: npt.DTypeLike | None = ...,
     ) -> None: ...
     # input is data and indices
-    # TODO: add support for 1D array indices? check if csr/csc also need it
     @overload
     def __init__(
         self: coo_array[Any, np.dtype[_SCT_co]],
         arg1: tuple[
+            npt.NDArray[_SCT_co],
+            tuple[_ArrayLike1DIndex],
+        ]
+        | tuple[
+            npt.NDArray[_SCT_co],
+            tuple[_ArrayLike1DIndex, _ArrayLike1DIndex],
+        ],
+        shape: _ShapeLike | None = ...,
+        dtype: None = ...,
+        copy: bool = ...,
+    ) -> None: ...
+    @overload
+    def __init__(
+        self: coo_array[Any, np.dtype[_SCT_co]],
+        arg1: tuple[
+            _ArrayLike1DDual[Any, Any],
+            tuple[_ArrayLike1DIndex],
+        ]
+        | tuple[
             _ArrayLike1DDual[Any, Any],
             tuple[_ArrayLike1DIndex, _ArrayLike1DIndex],
         ],
@@ -608,6 +632,10 @@ class coo_array(sparray[_ShapeAnno, _DType_co]):
     def __init__(
         self: coo_array[Any, np.dtype[_SCT_co]],
         arg1: tuple[
+            _ArrayLike1DDual[Any, Any],
+            tuple[_ArrayLike1DIndex],
+        ]
+        | tuple[
             _ArrayLike1DDual[Any, Any],
             tuple[_ArrayLike1DIndex, _ArrayLike1DIndex],
         ],
@@ -621,13 +649,16 @@ class coo_array(sparray[_ShapeAnno, _DType_co]):
         self,
         arg1: tuple[
             _ArrayLike1DDual[Any, Any],
+            tuple[_ArrayLike1DIndex],
+        ]
+        | tuple[
+            _ArrayLike1DDual[Any, Any],
             tuple[_ArrayLike1DIndex, _ArrayLike1DIndex],
         ],
         shape: _ShapeLike | None = ...,
         dtype: npt.DTypeLike | None = ...,
         copy: bool = ...,
     ) -> None: ...
-    # input is array
     @overload
     def __init__(
         self: coo_array[Any, np.dtype[_SCT_co]],
@@ -649,16 +680,6 @@ class coo_array(sparray[_ShapeAnno, _DType_co]):
         *,
         dtype: npt.DTypeLike | None = ...,
     ) -> None: ...
-    @property
-    def row(self) -> npt.NDArray[np.int_]: ...
-    @row.setter
-    def row(self, new_row: npt.ArrayLike) -> None: ...
-    @property
-    def col(self) -> npt.NDArray[np.int_]: ...
-    @col.setter
-    def col(self, new_row: npt.ArrayLike) -> None: ...
-    def sum_duplicates(self) -> None: ...
-    def eliminate_zeros(self) -> None: ...
     ###########################################################################
     # common methods from _data_matrix
     ###########################################################################
@@ -689,43 +710,66 @@ class coo_array(sparray[_ShapeAnno, _DType_co]):
     ###########################################################################
     # common methods from _minmax_mixin
     ###########################################################################
-    # TODO: is this return type correct? no coo_array?
+    @overload
+    def max(self: SparseArray[_SCT], axis: None = ..., out: None = ...) -> _SCT: ...
     @overload
     def max(self, axis: None = ..., out: None = ...) -> np.number[Any]: ...
     @overload
     def max(
+        self: SparseArray[_SCT], axis: SupportsIndex, out: None = ...
+    ) -> coo_array[Any, np.dtype[_SCT]] | _SCT: ...
+    @overload
+    def max(
         self, axis: SupportsIndex, out: None = ...
-    ) -> coo_matrix | np.number[Any]: ...
+    ) -> coo_array | np.number[Any]: ...
+    @overload
+    def min(self: SparseArray[_SCT], axis: None = ..., out: None = ...) -> _SCT: ...
     @overload
     def min(self, axis: None = ..., out: None = ...) -> np.number[Any]: ...
     @overload
     def min(
+        self: SparseArray[_SCT], axis: SupportsIndex, out: None = ...
+    ) -> coo_array[Any, np.dtype[_SCT]] | _SCT: ...
+    @overload
+    def min(
         self, axis: SupportsIndex, out: None = ...
-    ) -> coo_matrix | np.number[Any]: ...
+    ) -> coo_array | np.number[Any]: ...
+    @overload
+    def nanmax(self: SparseArray[_SCT], axis: None = ..., out: None = ...) -> _SCT: ...
     @overload
     def nanmax(self, axis: None = ..., out: None = ...) -> np.number[Any]: ...
     @overload
     def nanmax(
+        self: SparseArray[_SCT], axis: SupportsIndex, out: None = ...
+    ) -> coo_array[Any, np.dtype[_SCT]] | _SCT: ...
+    @overload
+    def nanmax(
         self, axis: SupportsIndex, out: None = ...
-    ) -> coo_matrix | np.number[Any]: ...
+    ) -> coo_array | np.number[Any]: ...
+    @overload
+    def nanmin(self: SparseArray[_SCT], axis: None = ..., out: None = ...) -> _SCT: ...
     @overload
     def nanmin(self, axis: None = ..., out: None = ...) -> np.number[Any]: ...
     @overload
     def nanmin(
-        self, axis: SupportsIndex, out: None = ...
-    ) -> coo_matrix | np.number[Any]: ...
+        self: SparseArray[_SCT], axis: SupportsIndex, out: None = ...
+    ) -> coo_array[Any, np.dtype[_SCT]] | _SCT: ...
     @overload
-    def argmax(self, axis: None = ..., out: None = ...) -> np.number[Any]: ...
+    def nanmin(
+        self, axis: SupportsIndex, out: None = ...
+    ) -> coo_array | np.number[Any]: ...
+    @overload
+    def argmax(self, axis: None = ..., out: None = ...) -> np.int_: ...
     @overload
     def argmax(
         self, axis: SupportsIndex, out: None = ...
-    ) -> coo_matrix | np.number[Any]: ...
+    ) -> np.ndarray[Any, np.dtype[np.int_]] | np.int_: ...
     @overload
-    def argmin(self, axis: None = ..., out: None = ...) -> np.number[Any]: ...
+    def argmin(self, axis: None = ..., out: None = ...) -> np.int_: ...
     @overload
     def argmin(
         self, axis: SupportsIndex, out: None = ...
-    ) -> coo_matrix | np.number[Any]: ...
+    ) -> np.ndarray[Any, np.dtype[np.int_]] | np.int_: ...
 
 class coo_matrix(spmatrix[_ShapeAnno, _DType_co]):
     ###########################################################################
@@ -1032,6 +1076,7 @@ class coo_matrix(spmatrix[_ShapeAnno, _DType_co]):
         dtype: npt.DTypeLike | None,
         out: _ArrayType,
     ) -> _ArrayType: ...
+    # TODO: is the following comment about copy true?
     # In asformat, copy=False is not Type annotated, though is valid runtime value.
     # This is because the dynamic type change is not compatible with static type
     # checker.
@@ -1075,6 +1120,7 @@ class coo_matrix(spmatrix[_ShapeAnno, _DType_co]):
         format: _Formats | None,
         copy: Literal[True],
     ) -> spmatrix[_ShapeAnno, _DType_co]: ...
+    # TODO: is the following comment about copy true?
     # In reshape, copy=False annotating is problematic, but I decided to copy from
     # numpy where it is permitted to mutate the shape without changing the ShapeType
     # typevar.
@@ -1197,16 +1243,6 @@ class coo_matrix(spmatrix[_ShapeAnno, _DType_co]):
     def __itruediv__(
         self, other: npt.NDArray[Any] | SparseArray[Any]
     ) -> npt.NDArray[Any] | SparseArray[Any]: ...
-
-    # TODO: the `T` and `transpose` methods need refinement.csc -> csr anything else?
-    # Despite T and transpose (if copy=False) by default mutate the shape of self, and
-    # can cause incompatibility with the ShapeType variable, I followed numpy's
-    # approach and allowed this.
-    @property
-    def T(self) -> spmatrix[Any, _DType_co]: ...
-    def transpose(
-        self, axes: None = ..., copy: bool = ...
-    ) -> spmatrix[Any, _DType_co]: ...
     # TODO: the type annotations of multiply, maximum, minimum and dot can be refined by
     # defining them per-final sparse class, but for now I leave them quite general
     def multiply(self, other: npt.ArrayLike | SparseArray[Any]) -> SparseArray[Any]: ...
@@ -1215,6 +1251,11 @@ class coo_matrix(spmatrix[_ShapeAnno, _DType_co]):
     def dot(
         self, other: npt.ArrayLike | SparseArray[Any]
     ) -> npt.NDArray[Any] | SparseArray[Any]: ...
+    @property
+    def T(self) -> coo_matrix[Any, _DType_co]: ...
+    def transpose(
+        self, axes: None = ..., copy: bool = ...
+    ) -> coo_matrix[Any, _DType_co]: ...
     ###########################################################################
     # common methods from _coo_base
     ###########################################################################
@@ -1223,7 +1264,16 @@ class coo_matrix(spmatrix[_ShapeAnno, _DType_co]):
     has_canonical_format: bool
     @property
     def format(self) -> Literal["coo"]: ...
-
+    @property
+    def row(self) -> npt.NDArray[np.int_]: ...
+    @row.setter
+    def row(self, new_row: npt.ArrayLike) -> None: ...
+    @property
+    def col(self) -> npt.NDArray[np.int_]: ...
+    @col.setter
+    def col(self, new_row: npt.ArrayLike) -> None: ...
+    def sum_duplicates(self) -> None: ...
+    def eliminate_zeros(self) -> None: ...
     # input is sparse array/matrix
     @overload
     def __init__(
@@ -1236,7 +1286,7 @@ class coo_matrix(spmatrix[_ShapeAnno, _DType_co]):
     @overload
     def __init__(
         self: coo_matrix[Any, np.dtype[_SCT_co]],
-        arg1: sparray[Any, Any] | spmatrix[Any, Any],
+        arg1: SparseArray[Any],
         shape: _ShapeLike | None = ...,
         *,
         dtype: _DTypeLike[_SCT_co],
@@ -1245,7 +1295,7 @@ class coo_matrix(spmatrix[_ShapeAnno, _DType_co]):
     @overload
     def __init__(
         self: coo_matrix[Any, np.dtype[_SCT_co]],
-        arg1: sparray[Any, Any] | spmatrix[Any, Any],
+        arg1: SparseArray[Any],
         shape: _ShapeLike | None,
         dtype: _DTypeLike[_SCT_co],
         copy: bool = ...,
@@ -1253,7 +1303,7 @@ class coo_matrix(spmatrix[_ShapeAnno, _DType_co]):
     @overload
     def __init__(
         self,
-        arg1: sparray[Any, Any] | spmatrix[Any, Any],
+        arg1: SparseArray[Any],
         shape: _ShapeLike | None = ...,
         *,
         dtype: npt.DTypeLike,
@@ -1262,7 +1312,7 @@ class coo_matrix(spmatrix[_ShapeAnno, _DType_co]):
     @overload
     def __init__(
         self,
-        arg1: sparray[Any, Any] | spmatrix[Any, Any],
+        arg1: SparseArray[Any],
         shape: _ShapeLike | None,
         dtype: npt.DTypeLike,
         copy: bool = ...,
@@ -1271,19 +1321,26 @@ class coo_matrix(spmatrix[_ShapeAnno, _DType_co]):
     @overload
     def __init__(
         self: coo_matrix[Any, np.dtype[_SCT_co]],
-        arg1: tuple[SupportsIndex] | tuple[SupportsIndex, SupportsIndex],
+        arg1: tuple[SupportsIndex, SupportsIndex],
         *,
         dtype: _DTypeLike[_SCT_co],
     ) -> None: ...
     @overload
     def __init__(
         self,
-        arg1: tuple[SupportsIndex] | tuple[SupportsIndex, SupportsIndex],
+        arg1: tuple[SupportsIndex, SupportsIndex],
         *,
         dtype: npt.DTypeLike | None = ...,
     ) -> None: ...
     # input is data and indices
-    # TODO: add support for 1D array indices? check if csr/csc also need it
+    @overload
+    def __init__(
+        self: coo_matrix[Any, np.dtype[_SCT_co]],
+        arg1: tuple[npt.NDArray[_SCT_co], tuple[_ArrayLike1DIndex, _ArrayLike1DIndex]],
+        shape: _ShapeLike | None = ...,
+        dtype: None = ...,
+        copy: bool = ...,
+    ) -> None: ...
     @overload
     def __init__(
         self: coo_matrix[Any, np.dtype[_SCT_co]],
@@ -1318,7 +1375,6 @@ class coo_matrix(spmatrix[_ShapeAnno, _DType_co]):
         dtype: npt.DTypeLike | None = ...,
         copy: bool = ...,
     ) -> None: ...
-    # input is array
     @overload
     def __init__(
         self: coo_matrix[Any, np.dtype[_SCT_co]],
@@ -1340,16 +1396,6 @@ class coo_matrix(spmatrix[_ShapeAnno, _DType_co]):
         *,
         dtype: npt.DTypeLike | None = ...,
     ) -> None: ...
-    @property
-    def row(self) -> npt.NDArray[np.int_]: ...
-    @row.setter
-    def row(self, new_row: npt.ArrayLike) -> None: ...
-    @property
-    def col(self) -> npt.NDArray[np.int_]: ...
-    @col.setter
-    def col(self, new_row: npt.ArrayLike) -> None: ...
-    def sum_duplicates(self) -> None: ...
-    def eliminate_zeros(self) -> None: ...
     ###########################################################################
     # common methods from _data_matrix
     ###########################################################################
@@ -1380,43 +1426,66 @@ class coo_matrix(spmatrix[_ShapeAnno, _DType_co]):
     ###########################################################################
     # common methods from _minmax_mixin
     ###########################################################################
-    # TODO: is this return type correct? no coo_array?
+    @overload
+    def max(self: SparseArray[_SCT], axis: None = ..., out: None = ...) -> _SCT: ...
     @overload
     def max(self, axis: None = ..., out: None = ...) -> np.number[Any]: ...
+    @overload
+    def max(
+        self: SparseArray[_SCT], axis: SupportsIndex, out: None = ...
+    ) -> coo_matrix[Any, np.dtype[_SCT]] | _SCT: ...
     @overload
     def max(
         self, axis: SupportsIndex, out: None = ...
     ) -> coo_matrix | np.number[Any]: ...
     @overload
+    def min(self: SparseArray[_SCT], axis: None = ..., out: None = ...) -> _SCT: ...
+    @overload
     def min(self, axis: None = ..., out: None = ...) -> np.number[Any]: ...
+    @overload
+    def min(
+        self: SparseArray[_SCT], axis: SupportsIndex, out: None = ...
+    ) -> coo_matrix[Any, np.dtype[_SCT]] | _SCT: ...
     @overload
     def min(
         self, axis: SupportsIndex, out: None = ...
     ) -> coo_matrix | np.number[Any]: ...
     @overload
+    def nanmax(self: SparseArray[_SCT], axis: None = ..., out: None = ...) -> _SCT: ...
+    @overload
     def nanmax(self, axis: None = ..., out: None = ...) -> np.number[Any]: ...
+    @overload
+    def nanmax(
+        self: SparseArray[_SCT], axis: SupportsIndex, out: None = ...
+    ) -> coo_matrix[Any, np.dtype[_SCT]] | _SCT: ...
     @overload
     def nanmax(
         self, axis: SupportsIndex, out: None = ...
     ) -> coo_matrix | np.number[Any]: ...
     @overload
+    def nanmin(self: SparseArray[_SCT], axis: None = ..., out: None = ...) -> _SCT: ...
+    @overload
     def nanmin(self, axis: None = ..., out: None = ...) -> np.number[Any]: ...
+    @overload
+    def nanmin(
+        self: SparseArray[_SCT], axis: SupportsIndex, out: None = ...
+    ) -> coo_matrix[Any, np.dtype[_SCT]] | _SCT: ...
     @overload
     def nanmin(
         self, axis: SupportsIndex, out: None = ...
     ) -> coo_matrix | np.number[Any]: ...
     @overload
-    def argmax(self, axis: None = ..., out: None = ...) -> np.number[Any]: ...
+    def argmax(self, axis: None = ..., out: None = ...) -> np.int_: ...
     @overload
     def argmax(
         self, axis: SupportsIndex, out: None = ...
-    ) -> coo_matrix | np.number[Any]: ...
+    ) -> np.matrix[Any, np.dtype[np.int_]] | np.int_: ...
     @overload
-    def argmin(self, axis: None = ..., out: None = ...) -> np.number[Any]: ...
+    def argmin(self, axis: None = ..., out: None = ...) -> np.int_: ...
     @overload
     def argmin(
         self, axis: SupportsIndex, out: None = ...
-    ) -> coo_matrix | np.number[Any]: ...
+    ) -> np.matrix[Any, np.dtype[np.int_]] | np.int_: ...
 
 def _ravel_coords(
     coords: _ArrayLikeInt_co,

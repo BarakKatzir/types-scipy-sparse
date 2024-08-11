@@ -340,6 +340,7 @@ class dia_array(sparray[_ShapeAnno, _DType_co]):
         dtype: npt.DTypeLike | None,
         out: _ArrayType,
     ) -> _ArrayType: ...
+    # TODO: is the following comment about copy true?
     # In asformat, copy=False is not Type annotated, though is valid runtime value.
     # This is because the dynamic type change is not compatible with static type
     # checker.
@@ -383,6 +384,7 @@ class dia_array(sparray[_ShapeAnno, _DType_co]):
         format: _Formats | None,
         copy: Literal[True],
     ) -> sparray[_ShapeAnno, _DType_co]: ...
+    # TODO: is the following comment about copy true?
     # In reshape, copy=False annotating is problematic, but I decided to copy from
     # numpy where it is permitted to mutate the shape without changing the ShapeType
     # typevar.
@@ -505,16 +507,6 @@ class dia_array(sparray[_ShapeAnno, _DType_co]):
     def __itruediv__(
         self, other: npt.NDArray[Any] | SparseArray[Any]
     ) -> npt.NDArray[Any] | SparseArray[Any]: ...
-
-    # TODO: the `T` and `transpose` methods need refinement.csc -> csr anything else?
-    # Despite T and transpose (if copy=False) by default mutate the shape of self, and
-    # can cause incompatibility with the ShapeType variable, I followed numpy's
-    # approach and allowed this.
-    @property
-    def T(self) -> sparray[Any, _DType_co]: ...
-    def transpose(
-        self, axes: None = ..., copy: bool = ...
-    ) -> sparray[Any, _DType_co]: ...
     # TODO: the type annotations of multiply, maximum, minimum and dot can be refined by
     # defining them per-final sparse class, but for now I leave them quite general
     def multiply(self, other: npt.ArrayLike | SparseArray[Any]) -> SparseArray[Any]: ...
@@ -523,6 +515,11 @@ class dia_array(sparray[_ShapeAnno, _DType_co]):
     def dot(
         self, other: npt.ArrayLike | SparseArray[Any]
     ) -> npt.NDArray[Any] | SparseArray[Any]: ...
+    @property
+    def T(self) -> dia_array[Any, _DType_co]: ...
+    def transpose(
+        self, axes: None = ..., copy: bool = ...
+    ) -> dia_array[Any, _DType_co]: ...
     ###########################################################################
     # common methods from _dia_base
     ###########################################################################
@@ -530,7 +527,6 @@ class dia_array(sparray[_ShapeAnno, _DType_co]):
     data: np.ndarray[Any, _DType_co]
     @property
     def format(self) -> Literal["dia"]: ...
-
     # input is sparse array/matrix
     @overload
     def __init__(
@@ -543,7 +539,7 @@ class dia_array(sparray[_ShapeAnno, _DType_co]):
     @overload
     def __init__(
         self: dia_array[Any, np.dtype[_SCT_co]],
-        arg1: sparray[Any, Any] | spmatrix[Any, Any],
+        arg1: SparseArray[Any],
         shape: _ShapeLike | None = ...,
         *,
         dtype: _DTypeLike[_SCT_co],
@@ -552,7 +548,7 @@ class dia_array(sparray[_ShapeAnno, _DType_co]):
     @overload
     def __init__(
         self: dia_array[Any, np.dtype[_SCT_co]],
-        arg1: sparray[Any, Any] | spmatrix[Any, Any],
+        arg1: SparseArray[Any],
         shape: _ShapeLike | None,
         dtype: _DTypeLike[_SCT_co],
         copy: bool = ...,
@@ -560,7 +556,7 @@ class dia_array(sparray[_ShapeAnno, _DType_co]):
     @overload
     def __init__(
         self,
-        arg1: sparray[Any, Any] | spmatrix[Any, Any],
+        arg1: SparseArray[Any],
         shape: _ShapeLike | None = ...,
         *,
         dtype: npt.DTypeLike,
@@ -569,7 +565,7 @@ class dia_array(sparray[_ShapeAnno, _DType_co]):
     @overload
     def __init__(
         self,
-        arg1: sparray[Any, Any] | spmatrix[Any, Any],
+        arg1: SparseArray[Any],
         shape: _ShapeLike | None,
         dtype: npt.DTypeLike,
         copy: bool = ...,
@@ -578,14 +574,14 @@ class dia_array(sparray[_ShapeAnno, _DType_co]):
     @overload
     def __init__(
         self: dia_array[Any, np.dtype[_SCT_co]],
-        arg1: tuple[SupportsIndex] | tuple[SupportsIndex, SupportsIndex],
+        arg1: tuple[SupportsIndex, SupportsIndex],
         *,
         dtype: _DTypeLike[_SCT_co],
     ) -> None: ...
     @overload
     def __init__(
         self,
-        arg1: tuple[SupportsIndex] | tuple[SupportsIndex, SupportsIndex],
+        arg1: tuple[SupportsIndex, SupportsIndex],
         *,
         dtype: npt.DTypeLike | None = ...,
     ) -> None: ...
@@ -615,7 +611,6 @@ class dia_array(sparray[_ShapeAnno, _DType_co]):
         dtype: npt.DTypeLike | None = ...,
         copy: bool = ...,
     ) -> None: ...
-    # input is array
     @overload
     def __init__(
         self: dia_array[Any, np.dtype[_SCT_co]],
@@ -970,6 +965,7 @@ class dia_matrix(spmatrix[_ShapeAnno, _DType_co]):
         dtype: npt.DTypeLike | None,
         out: _ArrayType,
     ) -> _ArrayType: ...
+    # TODO: is the following comment about copy true?
     # In asformat, copy=False is not Type annotated, though is valid runtime value.
     # This is because the dynamic type change is not compatible with static type
     # checker.
@@ -1013,6 +1009,7 @@ class dia_matrix(spmatrix[_ShapeAnno, _DType_co]):
         format: _Formats | None,
         copy: Literal[True],
     ) -> spmatrix[_ShapeAnno, _DType_co]: ...
+    # TODO: is the following comment about copy true?
     # In reshape, copy=False annotating is problematic, but I decided to copy from
     # numpy where it is permitted to mutate the shape without changing the ShapeType
     # typevar.
@@ -1135,16 +1132,6 @@ class dia_matrix(spmatrix[_ShapeAnno, _DType_co]):
     def __itruediv__(
         self, other: npt.NDArray[Any] | SparseArray[Any]
     ) -> npt.NDArray[Any] | SparseArray[Any]: ...
-
-    # TODO: the `T` and `transpose` methods need refinement.csc -> csr anything else?
-    # Despite T and transpose (if copy=False) by default mutate the shape of self, and
-    # can cause incompatibility with the ShapeType variable, I followed numpy's
-    # approach and allowed this.
-    @property
-    def T(self) -> spmatrix[Any, _DType_co]: ...
-    def transpose(
-        self, axes: None = ..., copy: bool = ...
-    ) -> spmatrix[Any, _DType_co]: ...
     # TODO: the type annotations of multiply, maximum, minimum and dot can be refined by
     # defining them per-final sparse class, but for now I leave them quite general
     def multiply(self, other: npt.ArrayLike | SparseArray[Any]) -> SparseArray[Any]: ...
@@ -1153,6 +1140,11 @@ class dia_matrix(spmatrix[_ShapeAnno, _DType_co]):
     def dot(
         self, other: npt.ArrayLike | SparseArray[Any]
     ) -> npt.NDArray[Any] | SparseArray[Any]: ...
+    @property
+    def T(self) -> dia_matrix[Any, _DType_co]: ...
+    def transpose(
+        self, axes: None = ..., copy: bool = ...
+    ) -> dia_matrix[Any, _DType_co]: ...
     ###########################################################################
     # common methods from _dia_base
     ###########################################################################
@@ -1160,7 +1152,6 @@ class dia_matrix(spmatrix[_ShapeAnno, _DType_co]):
     data: np.ndarray[Any, _DType_co]
     @property
     def format(self) -> Literal["dia"]: ...
-
     # input is sparse array/matrix
     @overload
     def __init__(
@@ -1173,7 +1164,7 @@ class dia_matrix(spmatrix[_ShapeAnno, _DType_co]):
     @overload
     def __init__(
         self: dia_matrix[Any, np.dtype[_SCT_co]],
-        arg1: sparray[Any, Any] | spmatrix[Any, Any],
+        arg1: SparseArray[Any],
         shape: _ShapeLike | None = ...,
         *,
         dtype: _DTypeLike[_SCT_co],
@@ -1182,7 +1173,7 @@ class dia_matrix(spmatrix[_ShapeAnno, _DType_co]):
     @overload
     def __init__(
         self: dia_matrix[Any, np.dtype[_SCT_co]],
-        arg1: sparray[Any, Any] | spmatrix[Any, Any],
+        arg1: SparseArray[Any],
         shape: _ShapeLike | None,
         dtype: _DTypeLike[_SCT_co],
         copy: bool = ...,
@@ -1190,7 +1181,7 @@ class dia_matrix(spmatrix[_ShapeAnno, _DType_co]):
     @overload
     def __init__(
         self,
-        arg1: sparray[Any, Any] | spmatrix[Any, Any],
+        arg1: SparseArray[Any],
         shape: _ShapeLike | None = ...,
         *,
         dtype: npt.DTypeLike,
@@ -1199,7 +1190,7 @@ class dia_matrix(spmatrix[_ShapeAnno, _DType_co]):
     @overload
     def __init__(
         self,
-        arg1: sparray[Any, Any] | spmatrix[Any, Any],
+        arg1: SparseArray[Any],
         shape: _ShapeLike | None,
         dtype: npt.DTypeLike,
         copy: bool = ...,
@@ -1208,14 +1199,14 @@ class dia_matrix(spmatrix[_ShapeAnno, _DType_co]):
     @overload
     def __init__(
         self: dia_matrix[Any, np.dtype[_SCT_co]],
-        arg1: tuple[SupportsIndex] | tuple[SupportsIndex, SupportsIndex],
+        arg1: tuple[SupportsIndex, SupportsIndex],
         *,
         dtype: _DTypeLike[_SCT_co],
     ) -> None: ...
     @overload
     def __init__(
         self,
-        arg1: tuple[SupportsIndex] | tuple[SupportsIndex, SupportsIndex],
+        arg1: tuple[SupportsIndex, SupportsIndex],
         *,
         dtype: npt.DTypeLike | None = ...,
     ) -> None: ...
@@ -1245,7 +1236,6 @@ class dia_matrix(spmatrix[_ShapeAnno, _DType_co]):
         dtype: npt.DTypeLike | None = ...,
         copy: bool = ...,
     ) -> None: ...
-    # input is array
     @overload
     def __init__(
         self: dia_matrix[Any, np.dtype[_SCT_co]],

@@ -359,6 +359,7 @@ class sparray(Protocol[_ShapeAnno, _DType_co]):
         dtype: npt.DTypeLike | None,
         out: _ArrayType,
     ) -> _ArrayType: ...
+    # TODO: is the following comment about copy true?
     # In asformat, copy=False is not Type annotated, though is valid runtime value.
     # This is because the dynamic type change is not compatible with static type
     # checker.
@@ -402,6 +403,7 @@ class sparray(Protocol[_ShapeAnno, _DType_co]):
         format: _Formats | None,
         copy: Literal[True],
     ) -> sparray[_ShapeAnno, _DType_co]: ...
+    # TODO: is the following comment about copy true?
     # In reshape, copy=False annotating is problematic, but I decided to copy from
     # numpy where it is permitted to mutate the shape without changing the ShapeType
     # typevar.
@@ -524,16 +526,6 @@ class sparray(Protocol[_ShapeAnno, _DType_co]):
     def __itruediv__(
         self, other: npt.NDArray[Any] | SparseArray[Any]
     ) -> npt.NDArray[Any] | SparseArray[Any]: ...
-
-    # TODO: the `T` and `transpose` methods need refinement.csc -> csr anything else?
-    # Despite T and transpose (if copy=False) by default mutate the shape of self, and
-    # can cause incompatibility with the ShapeType variable, I followed numpy's
-    # approach and allowed this.
-    @property
-    def T(self) -> sparray[Any, _DType_co]: ...
-    def transpose(
-        self, axes: None = ..., copy: bool = ...
-    ) -> sparray[Any, _DType_co]: ...
     # TODO: the type annotations of multiply, maximum, minimum and dot can be refined by
     # defining them per-final sparse class, but for now I leave them quite general
     def multiply(self, other: npt.ArrayLike | SparseArray[Any]) -> SparseArray[Any]: ...
@@ -542,8 +534,11 @@ class sparray(Protocol[_ShapeAnno, _DType_co]):
     def dot(
         self, other: npt.ArrayLike | SparseArray[Any]
     ) -> npt.NDArray[Any] | SparseArray[Any]: ...
-
-    # sparray format can be any value of its subclasses, which I leave as str
+    @property
+    def T(self) -> sparray[Any, _DType_co]: ...
+    def transpose(
+        self, axes: None = ..., copy: bool = ...
+    ) -> sparray[Any, _DType_co]: ...
     @property
     def format(self) -> str: ...
 

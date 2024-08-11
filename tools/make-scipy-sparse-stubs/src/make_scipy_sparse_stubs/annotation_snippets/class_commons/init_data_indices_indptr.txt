@@ -1,0 +1,34 @@
+# input is data, indices, indptr
+@overload
+def __init__(
+    self: {_Self_Base}[Any, np.dtype[_SCT_co]],
+    arg1: tuple[npt.NDArray[_SCT_co], _ArrayLike1DIndex, _ArrayLike1DIndex],
+    shape: _ShapeLike | None = ...,
+    dtype: None = ...,
+    copy: bool = ...,
+) -> None: ...
+@overload
+def __init__(
+    self: {_Self_Base}[Any, np.dtype[_SCT_co]],
+    arg1: tuple[_ArrayLike1DDual[Any, Any], _ArrayLike1DIndex, _ArrayLike1DIndex],
+    shape: _ShapeLike | None = ...,
+    *,
+    dtype: _DTypeLike[_SCT_co],
+    copy: bool = ...,
+) -> None: ...
+@overload
+def __init__(
+    self: {_Self_Base}[Any, np.dtype[_SCT_co]],
+    arg1: tuple[_ArrayLike1DDual[Any, Any], _ArrayLike1DIndex, _ArrayLike1DIndex],
+    shape: _ShapeLike | None,
+    dtype: _DTypeLike[_SCT_co],
+    copy: bool = ...,
+) -> None: ...
+@overload
+def __init__(
+    self,
+    arg1: tuple[_ArrayLike1DDual[Any, Any], _ArrayLike1DIndex, _ArrayLike1DIndex],
+    shape: _ShapeLike | None = ...,
+    dtype: npt.DTypeLike | None = ...,
+    copy: bool = ...,
+) -> None: ...

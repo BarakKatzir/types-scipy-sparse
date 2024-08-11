@@ -1,0 +1,43 @@
+# input is sparse array/matrix
+@overload
+def __init__(
+    self,
+    arg1: sparray[Any, _DType_co] | spmatrix[Any, _DType_co],
+    shape: _ShapeLike | None = ...,
+    dtype: None = ...,
+    copy: bool = ...,
+) -> None: ...
+@overload
+def __init__(
+    self: {_Self_Base}[Any, np.dtype[_SCT_co]],
+    arg1: SparseArray[Any],
+    shape: _ShapeLike | None = ...,
+    *,
+    dtype: _DTypeLike[_SCT_co],
+    copy: bool = ...,
+) -> None: ...
+@overload
+def __init__(
+    self: {_Self_Base}[Any, np.dtype[_SCT_co]],
+    arg1: SparseArray[Any],
+    shape: _ShapeLike | None,
+    dtype: _DTypeLike[_SCT_co],
+    copy: bool = ...,
+) -> None: ...
+@overload
+def __init__(
+    self,
+    arg1: SparseArray[Any],
+    shape: _ShapeLike | None = ...,
+    *,
+    dtype: npt.DTypeLike,
+    copy: bool = ...,
+) -> None: ...
+@overload
+def __init__(
+    self,
+    arg1: SparseArray[Any],
+    shape: _ShapeLike | None,
+    dtype: npt.DTypeLike,
+    copy: bool = ...,
+) -> None: ...

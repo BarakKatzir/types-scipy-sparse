@@ -1,0 +1,21 @@
+@overload
+def __init__(
+    self: {_Self_Base}[Any, np.dtype[_SCT_co]],
+    arg1: npt.NDArray[_SCT_co],
+    *,
+    dtype: None = ...,
+) -> None: ...
+@overload
+def __init__(
+    self: {_Self_Base}[Any, np.dtype[_SCT_co]],
+    arg1: npt.ArrayLike,
+    *,
+    dtype: _DTypeLike[_SCT_co],
+) -> None: ...
+@overload
+def __init__(
+    self,
+    arg1: npt.ArrayLike,
+    *,
+    dtype: npt.DTypeLike | None = ...,
+) -> None: ...

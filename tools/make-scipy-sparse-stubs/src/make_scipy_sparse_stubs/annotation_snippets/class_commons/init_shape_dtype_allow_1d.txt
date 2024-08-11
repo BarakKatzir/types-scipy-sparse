@@ -1,0 +1,15 @@
+# input is shape and dtype to init empty sparse
+@overload
+def __init__(
+    self: {_Self_Base}[Any, np.dtype[_SCT_co]],
+    arg1: tuple[SupportsIndex] | tuple[SupportsIndex, SupportsIndex],
+    *,
+    dtype: _DTypeLike[_SCT_co],
+) -> None: ...
+@overload
+def __init__(
+    self,
+    arg1: tuple[SupportsIndex] | tuple[SupportsIndex, SupportsIndex],
+    *,
+    dtype: npt.DTypeLike | None = ...,
+) -> None: ...

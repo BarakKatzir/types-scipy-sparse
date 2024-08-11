@@ -70,13 +70,17 @@ def _get_sparray_spmatrix_body(tp: Literal["sparray", "spmatrix"]) -> str:
     Return class body annotations for sparray / spmatrix that are ``inherited''
     from _spbase.
     """
-    body = _get_commons("spbase_commons")
+    commons = (
+        "spbase_commons",
+        "transpose",
+    )
+    body = "".join(map(_get_commons, commons))
     return body.format(
         _Sparse_Type=tp,
         _sparse_suffix=tp[2:],
         _Self_Base=tp,
         _Dense_Type=SPARSE_TYPE_TO_DENSE_TYPE[tp],
-    )
+    )[:-1]
 
 
 def make__base() -> str:
@@ -95,20 +99,23 @@ def make__matrix() -> str:
     return module.format(cls_body=_get_sparray_spmatrix_body("spmatrix"))
 
 
-def _get_csc_csr_body(
-    tp: Literal["array", "matrix"], format_: Literal["csr", "csc"]
-) -> str:
+def _get_csc_body(tp: Literal["array", "matrix"]) -> str:
     """Return the class body for csc_array, csr_array, csr_matrix or csc_matrix."""
     commons = (
         "spbase_commons",
-        "cs_matrix_init",
+        "transpose_csc",
         "cs_matrix_commons",
+        "init_sparse_array",
+        "init_shape_dtype",
+        "init_data_indices",
+        "init_data_indices_indptr",
+        "init_dense",
         "data_matrix_commons",
         "minmax_mixin_commons",
     )
     body = "".join(map(_get_commons, commons))
     return body.format(
-        _Self_Base=format_ + "_" + tp,
+        _Self_Base="csc_" + tp,
         _Sparse_Type="sp" + tp,
         _sparse_suffix=tp,
         _Dense_Type=SPARSE_TYPE_TO_DENSE_TYPE["sp" + tp],
@@ -120,8 +127,31 @@ def make__csc() -> str:
     with (ANNOTATION_SNIPPETS / "module_templates" / "_csc_template.txt").open() as f:
         module = f.read()
     return module.format(
-        array_body=_get_csc_csr_body("array", "csc")[:-1],
-        matrix_body=_get_csc_csr_body("matrix", "csc")[:-1],
+        array_body=_get_csc_body("array")[:-1],
+        matrix_body=_get_csc_body("matrix")[:-1],
+    )
+
+
+def _get_csr_body(tp: Literal["array", "matrix"]) -> str:
+    """Return the class body for csc_array, csr_array, csr_matrix or csc_matrix."""
+    commons = (
+        "spbase_commons",
+        "transpose_csr_matrix" if tp == "matrix" else "transpose_csr_array",
+        "cs_matrix_commons",
+        "init_sparse_array",
+        "init_shape_dtype" if tp == "matrix" else "init_shape_dtype_allow_1d",
+        "init_data_indices" if tp == "matrix" else "init_data_indices_allow_1d",
+        "init_data_indices_indptr",
+        "init_dense",
+        "data_matrix_commons",
+        "minmax_mixin_commons",
+    )
+    body = "".join(map(_get_commons, commons))
+    return body.format(
+        _Self_Base="csr_" + tp,
+        _Sparse_Type="sp" + tp,
+        _sparse_suffix=tp,
+        _Dense_Type=SPARSE_TYPE_TO_DENSE_TYPE["sp" + tp],
     )
 
 
@@ -130,8 +160,8 @@ def make__csr() -> str:
     with (ANNOTATION_SNIPPETS / "module_templates" / "_csr_template.txt").open() as f:
         module = f.read()
     return module.format(
-        array_body=_get_csc_csr_body("array", "csr")[:-1],
-        matrix_body=_get_csc_csr_body("matrix", "csr")[:-1],
+        array_body=_get_csr_body("array")[:-1],
+        matrix_body=_get_csr_body("matrix")[:-1],
     )
 
 
@@ -139,7 +169,8 @@ def _get_bsr_body(tp: Literal["array", "matrix"]) -> str:
     """Return the class body for bsr_array or bsr_matrix."""
     commons = (
         "spbase_commons",
-        "bsr_base_commons",
+        "transpose",
+        "bsr_base_commons",  # cs_matrix init overwritten to add blocksize arg
         "cs_matrix_commons",
         "data_matrix_commons",
         "minmax_mixin_commons",
@@ -167,7 +198,12 @@ def _get_coo_body(tp: Literal["array", "matrix"]) -> str:
     """Return the class body for coo_array or coo_matrix."""
     commons = (
         "spbase_commons",
+        "transpose",
         "coo_base_commons",
+        "init_sparse_array",
+        "init_shape_dtype" if tp == "matrix" else "init_shape_dtype_allow_1d",
+        "init_data_indices" if tp == "matrix" else "init_data_indices_allow_1d",
+        "init_dense",
         "data_matrix_commons",
         "minmax_mixin_commons",
     )
@@ -194,7 +230,12 @@ def _get_dia_body(tp: Literal["array", "matrix"]) -> str:
     """Return the class body for dia_array or dia_matrix."""
     commons = (
         "spbase_commons",
+        "transpose",
         "dia_base_commons",
+        "init_sparse_array",
+        "init_shape_dtype",
+        "init_data_offsets",
+        "init_dense",
         "data_matrix_commons",
     )
     body = "".join(map(_get_commons, commons))
@@ -220,7 +261,11 @@ def _get_dok_body(tp: Literal["array", "matrix"]) -> str:
     """Return the class body for dok_array or dok_matrix."""
     commons = (
         "spbase_commons",
+        "transpose",
         "dok_base_commons",
+        "init_sparse_array",
+        "init_shape_dtype" if tp == "matrix" else "init_shape_dtype_allow_1d",
+        "init_dense",
     )
     body = "".join(map(_get_commons, commons))
     return body.format(
@@ -245,7 +290,11 @@ def _get_lil_body(tp: Literal["array", "matrix"]) -> str:
     """Return the class body for lil_array or lil_matrix."""
     commons = (
         "spbase_commons",
+        "transpose",
         "lil_base_commons",
+        "init_sparse_array",
+        "init_shape_dtype",
+        "init_dense",
     )
     body = "".join(map(_get_commons, commons))
     return body.format(

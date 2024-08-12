@@ -32,6 +32,7 @@ from ._matrix import spmatrix
 
 _SCT = TypeVar("_SCT", bound=np.generic)
 _SCT_co = TypeVar("_SCT_co", covariant=True, bound=np.generic)
+_ShapeType = TypeVar("_ShapeType")
 
 _ShapeAnno = TypeVar("_ShapeAnno", default=Any)
 _DType_co = TypeVar(

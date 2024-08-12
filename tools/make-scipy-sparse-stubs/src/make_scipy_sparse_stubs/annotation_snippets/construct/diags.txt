@@ -21,7 +21,7 @@ def diags(
     offsets: _ArrayLike1DIndex | SupportsIndex,
     shape: None | tuple[SupportsIndex, SupportsIndex],
     format: Literal["{_Spec_Format}"],
-    dtype: _DTypeLike[_SCT_co] = ...,
+    dtype: _DTypeLike[_SCT_co],
 ) -> {_Spec_Format}_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def diags(
@@ -30,7 +30,7 @@ def diags(
     shape: None | tuple[SupportsIndex, SupportsIndex] = ...,
     *,
     format: Literal["{_Spec_Format}"],
-    dtype: _DTypeLike[_SCT_co] = ...,
+    dtype: _DTypeLike[_SCT_co],
 ) -> {_Spec_Format}_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def diags(

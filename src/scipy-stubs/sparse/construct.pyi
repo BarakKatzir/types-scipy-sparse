@@ -51,7 +51,7 @@ from ._sputils import get_index_dtype as get_index_dtype
 from ._sputils import isscalarlike as isscalarlike
 from ._sputils import upcast as upcast
 
-from scipy._lib._util import (  # type: ignore[import-untyped] # isort: skip
-    check_random_state as check_random_state,
-    rng_integers as rng_integers,
+from scipy._lib._util import (  # type: ignore[import-untyped] # pyright: ignore[reportMissingTypeStubs] # isort: skip
+    check_random_state as check_random_state,  # pyright: ignore[reportUnknownVariableType]
+    rng_integers as rng_integers,  # pyright: ignore[reportUnknownVariableType]
 )

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/pyright/main/packages/vscode-pyright/schemas/pyrightconfig.schema.json",
+  "include": ["src"],
+  "typeCheckingMode": "strict",
+  "reportShadowedImports": "error",
+  "reportImplicitStringConcatenation": "error",
+  // Extra strict settings
+  "reportCallInDefaultInitializer": "error",
+  "reportUnnecessaryTypeIgnoreComment": "error",
+  // Leave "type: ignore" comments to mypy
+  "enableTypeIgnoreComments": false,
+  // No effect in stubs
+  "reportMissingSuperCall": "none",
+  "reportUninitializedInstanceVariable": "none",
+  // Stubs are allowed to use private variables
+  "reportPrivateUsage": "none",
+  // Stubs don't need the actual modules to be installed
+  "reportMissingModuleSource": "none",
+  // Incompatible overrides and property type mismatches are out of typeshed's control
+  // as they are inherited from the implementation.
+  "reportIncompatibleMethodOverride": "none"
+}

@@ -16,7 +16,7 @@ def diags_array(
     offsets: _ArrayLike1DIndex | SupportsIndex = ...,
     shape: None | tuple[SupportsIndex, SupportsIndex] = ...,
     format: Literal["{_Spec_Format}"]{_Opt_None},
-    dtype: _DTypeLike[_SCT_co] = ...,
+    dtype: _DTypeLike[_SCT_co],
 ) -> {_Spec_Format}_array[Any, np.dtype[_SCT_co]]: ...
 @overload
 def diags_array(

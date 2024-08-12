@@ -257,7 +257,7 @@ def diags_array(
     offsets: _ArrayLike1DIndex | SupportsIndex = ...,
     shape: None | tuple[SupportsIndex, SupportsIndex] = ...,
     format: Literal["csc"],
-    dtype: _DTypeLike[_SCT_co] = ...,
+    dtype: _DTypeLike[_SCT_co],
 ) -> csc_array[Any, np.dtype[_SCT_co]]: ...
 @overload
 def diags_array(
@@ -287,7 +287,7 @@ def diags_array(
     offsets: _ArrayLike1DIndex | SupportsIndex = ...,
     shape: None | tuple[SupportsIndex, SupportsIndex] = ...,
     format: Literal["csr"],
-    dtype: _DTypeLike[_SCT_co] = ...,
+    dtype: _DTypeLike[_SCT_co],
 ) -> csr_array[Any, np.dtype[_SCT_co]]: ...
 @overload
 def diags_array(
@@ -317,7 +317,7 @@ def diags_array(
     offsets: _ArrayLike1DIndex | SupportsIndex = ...,
     shape: None | tuple[SupportsIndex, SupportsIndex] = ...,
     format: Literal["coo"],
-    dtype: _DTypeLike[_SCT_co] = ...,
+    dtype: _DTypeLike[_SCT_co],
 ) -> coo_array[Any, np.dtype[_SCT_co]]: ...
 @overload
 def diags_array(
@@ -347,7 +347,7 @@ def diags_array(
     offsets: _ArrayLike1DIndex | SupportsIndex = ...,
     shape: None | tuple[SupportsIndex, SupportsIndex] = ...,
     format: Literal["bsr"],
-    dtype: _DTypeLike[_SCT_co] = ...,
+    dtype: _DTypeLike[_SCT_co],
 ) -> bsr_array[Any, np.dtype[_SCT_co]]: ...
 @overload
 def diags_array(
@@ -377,7 +377,7 @@ def diags_array(
     offsets: _ArrayLike1DIndex | SupportsIndex = ...,
     shape: None | tuple[SupportsIndex, SupportsIndex] = ...,
     format: Literal["dia"] | None = ...,
-    dtype: _DTypeLike[_SCT_co] = ...,
+    dtype: _DTypeLike[_SCT_co],
 ) -> dia_array[Any, np.dtype[_SCT_co]]: ...
 @overload
 def diags_array(
@@ -407,7 +407,7 @@ def diags_array(
     offsets: _ArrayLike1DIndex | SupportsIndex = ...,
     shape: None | tuple[SupportsIndex, SupportsIndex] = ...,
     format: Literal["dok"],
-    dtype: _DTypeLike[_SCT_co] = ...,
+    dtype: _DTypeLike[_SCT_co],
 ) -> dok_array[Any, np.dtype[_SCT_co]]: ...
 @overload
 def diags_array(
@@ -437,7 +437,7 @@ def diags_array(
     offsets: _ArrayLike1DIndex | SupportsIndex = ...,
     shape: None | tuple[SupportsIndex, SupportsIndex] = ...,
     format: Literal["lil"],
-    dtype: _DTypeLike[_SCT_co] = ...,
+    dtype: _DTypeLike[_SCT_co],
 ) -> lil_array[Any, np.dtype[_SCT_co]]: ...
 @overload
 def diags_array(
@@ -505,7 +505,7 @@ def diags(
     offsets: _ArrayLike1DIndex | SupportsIndex,
     shape: None | tuple[SupportsIndex, SupportsIndex],
     format: Literal["csc"],
-    dtype: _DTypeLike[_SCT_co] = ...,
+    dtype: _DTypeLike[_SCT_co],
 ) -> csc_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def diags(
@@ -514,7 +514,7 @@ def diags(
     shape: None | tuple[SupportsIndex, SupportsIndex] = ...,
     *,
     format: Literal["csc"],
-    dtype: _DTypeLike[_SCT_co] = ...,
+    dtype: _DTypeLike[_SCT_co],
 ) -> csc_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def diags(
@@ -556,7 +556,7 @@ def diags(
     offsets: _ArrayLike1DIndex | SupportsIndex,
     shape: None | tuple[SupportsIndex, SupportsIndex],
     format: Literal["csr"],
-    dtype: _DTypeLike[_SCT_co] = ...,
+    dtype: _DTypeLike[_SCT_co],
 ) -> csr_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def diags(
@@ -565,7 +565,7 @@ def diags(
     shape: None | tuple[SupportsIndex, SupportsIndex] = ...,
     *,
     format: Literal["csr"],
-    dtype: _DTypeLike[_SCT_co] = ...,
+    dtype: _DTypeLike[_SCT_co],
 ) -> csr_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def diags(
@@ -607,7 +607,7 @@ def diags(
     offsets: _ArrayLike1DIndex | SupportsIndex,
     shape: None | tuple[SupportsIndex, SupportsIndex],
     format: Literal["coo"],
-    dtype: _DTypeLike[_SCT_co] = ...,
+    dtype: _DTypeLike[_SCT_co],
 ) -> coo_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def diags(
@@ -616,7 +616,7 @@ def diags(
     shape: None | tuple[SupportsIndex, SupportsIndex] = ...,
     *,
     format: Literal["coo"],
-    dtype: _DTypeLike[_SCT_co] = ...,
+    dtype: _DTypeLike[_SCT_co],
 ) -> coo_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def diags(
@@ -658,7 +658,7 @@ def diags(
     offsets: _ArrayLike1DIndex | SupportsIndex,
     shape: None | tuple[SupportsIndex, SupportsIndex],
     format: Literal["bsr"],
-    dtype: _DTypeLike[_SCT_co] = ...,
+    dtype: _DTypeLike[_SCT_co],
 ) -> bsr_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def diags(
@@ -667,7 +667,7 @@ def diags(
     shape: None | tuple[SupportsIndex, SupportsIndex] = ...,
     *,
     format: Literal["bsr"],
-    dtype: _DTypeLike[_SCT_co] = ...,
+    dtype: _DTypeLike[_SCT_co],
 ) -> bsr_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def diags(
@@ -709,7 +709,7 @@ def diags(
     offsets: _ArrayLike1DIndex | SupportsIndex,
     shape: None | tuple[SupportsIndex, SupportsIndex],
     format: Literal["dia"],
-    dtype: _DTypeLike[_SCT_co] = ...,
+    dtype: _DTypeLike[_SCT_co],
 ) -> dia_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def diags(
@@ -718,7 +718,7 @@ def diags(
     shape: None | tuple[SupportsIndex, SupportsIndex] = ...,
     *,
     format: Literal["dia"],
-    dtype: _DTypeLike[_SCT_co] = ...,
+    dtype: _DTypeLike[_SCT_co],
 ) -> dia_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def diags(
@@ -760,7 +760,7 @@ def diags(
     offsets: _ArrayLike1DIndex | SupportsIndex,
     shape: None | tuple[SupportsIndex, SupportsIndex],
     format: Literal["dok"],
-    dtype: _DTypeLike[_SCT_co] = ...,
+    dtype: _DTypeLike[_SCT_co],
 ) -> dok_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def diags(
@@ -769,7 +769,7 @@ def diags(
     shape: None | tuple[SupportsIndex, SupportsIndex] = ...,
     *,
     format: Literal["dok"],
-    dtype: _DTypeLike[_SCT_co] = ...,
+    dtype: _DTypeLike[_SCT_co],
 ) -> dok_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def diags(
@@ -811,7 +811,7 @@ def diags(
     offsets: _ArrayLike1DIndex | SupportsIndex,
     shape: None | tuple[SupportsIndex, SupportsIndex],
     format: Literal["lil"],
-    dtype: _DTypeLike[_SCT_co] = ...,
+    dtype: _DTypeLike[_SCT_co],
 ) -> lil_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def diags(
@@ -820,7 +820,7 @@ def diags(
     shape: None | tuple[SupportsIndex, SupportsIndex] = ...,
     *,
     format: Literal["lil"],
-    dtype: _DTypeLike[_SCT_co] = ...,
+    dtype: _DTypeLike[_SCT_co],
 ) -> lil_matrix[Any, np.dtype[_SCT_co]]: ...
 @overload
 def diags(
